@@ -25,7 +25,9 @@ export default function NewsList() {
 				}
 
 				const data = await response.json();
+
 				setNewsData(data.feed);
+
 				setLoading(false);
 
 			} catch (error) {
