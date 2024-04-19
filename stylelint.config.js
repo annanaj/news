@@ -1,0 +1,9 @@
+// eslint-disable-next-line no-undef
+module.exports = {
+	extends: [
+		'@ntvr/stylelint-config',
+		'@ntvr/stylelint-config/order',
+		'@ntvr/stylelint-config/scss',
+		'@ntvr/stylelint-config/kebab-classes',
+	],
+};
