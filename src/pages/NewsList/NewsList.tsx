@@ -33,31 +33,29 @@ export default function NewsList() {
 				setLoading(false);
 			}
 		};
-
 		fetchNewsData();
 	}, [apiKey]);
-
-	if (loading) {
-		return (
-			<div className="container mx-auto px-4">
-				<h1 className="text-2xl font-bold mb-4">News & Sentiment Trending</h1>
-				<p>Loading news...</p>
-			</div>
-		);
-	}
 
 	return (
 		<div className="container mx-auto px-4">
 			<h1 className="text-2xl font-bold mb-4">News & Sentiment Trending</h1>
+
+			{loading && <div>
+				<div className="container mx-auto px-4">
+					<h1 className="text-2xl font-bold mb-4">News & Sentiment Trending</h1>
+					<p>Loading news...</p>
+				</div>
+			</div>}
+
 			{newsData ? (
 				// <div>
 				// 	<pre>{JSON.stringify(newsData, null, 2)}</pre>
 				// </div>
-					newsData.map((article: NewsListProps, index: number) => (
+				newsData.map((news: NewsListProps, index: number) => (
 						<div key={index} className="bg-white rounded-lg shadow-lg p-6 mb-4">
-							<h2 className="text-xl font-bold mb-2">{article.title}</h2>
-							<p className="text-gray-700">{article.summary}</p>
-							<p className="text-gray-600 mt-2">Published on: {new Date(article.time_published).toLocaleDateString()}</p>
+							<h2 className="text-xl font-bold mb-2">{news.title}</h2>
+							<p className="text-gray-700">{news.summary}</p>
+							<p className="text-gray-600 mt-2">Published on: {new Date(news.time_published).toLocaleDateString()}</p>
 						</div>
 					))
 				) : (
