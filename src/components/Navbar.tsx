@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import routes from '../routes';
 import logo from '../assets/logo.webp';
 
@@ -27,9 +28,9 @@ export default function Navbar() {
 
 	return (
 		<nav className="fixed z-20 top-0 start-0 w-full bg-gray-900 border-b border-gray-600">
-			<div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto px-4 py-2">
+			<div className="flex flex-wrap items-center justify-between max-w-screen-2xl mx-auto px-4 py-2">
 				<div className="flex items-center space-x-3">
-					<img src={logo} className="h-12" alt="logo"/>
+					<img src={logo} className="h-12" alt="logo" />
 					<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray">Financial updates</span>
 				</div>
 				<div className="items-center justify-between flex w-auto">
@@ -50,5 +51,5 @@ export default function Navbar() {
 				</div>
 			</div>
 		</nav>
-	)
+	);
 }
