@@ -9,7 +9,7 @@ interface NewsListProps {
 export default function NewsList() {
 	const [newsData, setNewsData] = useState<NewsListProps[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
-	const apiKey = '02QE69ZHYAYLNSQB';
+	const apiKey = 'SAJMX7DTFM92B45T';
 
 	useEffect(() => {
 		const fetchNewsData = async () => {
@@ -18,7 +18,7 @@ export default function NewsList() {
 					throw new Error('API key not available');
 				}
 
-				const response = await fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=IBM&limit=3&apikey=${apiKey}`);
+				const response = await fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1&apikey=${apiKey}`);
 
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
@@ -26,15 +26,28 @@ export default function NewsList() {
 
 				const data = await response.json();
 
+				localStorage.setItem('cachedNewsData', JSON.stringify(data.feed));
 				setNewsData(data.feed);
-
 				setLoading(false);
 			} catch (error) {
 				console.error('Error fetching news data:', error);
 				setLoading(false);
 			}
 		};
-		fetchNewsData();
+		// Due to 25 api request limitation per day, use cache in local storage
+		const cachedData = localStorage.getItem('cachedNewsData');
+		if (cachedData !== 'undefined' || null) {
+			try {
+				setNewsData(JSON.parse(cachedData || '{}'));
+				setLoading(false);
+			} catch (error) {
+				console.error('Error parsing cached data:', error);
+				// Optionally, handle the error by fetching data from the server
+				fetchNewsData();
+			}
+		} else {
+			fetchNewsData();
+		}
 	}, [apiKey]);
 
 	return (
