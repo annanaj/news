@@ -4,12 +4,20 @@ interface NewsListProps {
 	title: string,
 	summary: string,
 	time_published: string,
+	authors: string,
 }
 
 export default function NewsList() {
 	const [newsData, setNewsData] = useState<NewsListProps[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 	const apiKey = 'SAJMX7DTFM92B45T';
+
+	const formatPublishedDate = (dateString: string): string => {
+		const year = dateString.substring(0, 4);
+		const month = dateString.substring(4, 6);
+		const day = dateString.substring(6, 8);
+		return `${year}-${month}-${day}`;
+	};
 
 	useEffect(() => {
 		const fetchNewsData = async () => {
@@ -52,7 +60,9 @@ export default function NewsList() {
 
 	return (
 		<div className="container mt-24 mx-auto px-4">
-			<h1 className="text-2xl font-bold mb-4">News & Sentiment Trending</h1>
+			<h1 className="text-2xl font-bold mb-7">News & Sentiment Trending</h1>
+
+			{/* <pre>{JSON.stringify(newsData, null, 2)}</pre> */}
 
 			{loading && (
 				<div>
@@ -63,18 +73,19 @@ export default function NewsList() {
 			)}
 
 			{newsData ? (
-				// <div>
-				// 	<pre>{JSON.stringify(newsData, null, 2)}</pre>
-				// </div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
 					{newsData.map((news: NewsListProps) => (
-						<div key={news.title} className="bg-white rounded-lg shadow-lg p-6 mb-4">
+						<div key={news.title} className="flex flex-col h-full p-6 mb-4 bg-gray-50 rounded-lg shadow-lg">
 							<h2 className="text-xl font-bold mb-2 text-gray-900">{news.title}</h2>
 							<p className="text-gray-700">{news.summary}</p>
-							<p className="text-gray-500 text-sm mt-2">
-								Published on:
-								{new Date(news.time_published).toLocaleDateString()}
-							</p>
+							<div className="flex justify-between gap-4 mt-auto text-gray-400 text-sm">
+								<p className="self-end whitespace-nowrap">
+									{formatPublishedDate(news.time_published)}
+								</p>
+								<p>
+									{news.authors}
+								</p>
+							</div>
 						</div>
 					))}
 				</div>
