@@ -25,7 +25,7 @@ export default function NewsList() {
 		setLoading(false);
 	};
 
-	const handleFetchError = (error: Error) => {
+	const handleFetchError = (error: Error | unknown) => {
 		console.error('Error fetching data from server:', error);
 		// If fetch fails, use cached data as backup
 		const cachedData = localStorage.getItem('cachedNewsData');
