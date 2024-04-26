@@ -19,14 +19,38 @@ export default function NewsList() {
 		return `${year}-${month}-${day}`;
 	};
 
+	// due to the api calls limitation, take data from localStorage if fetch is not successfull
+	const handleFetchSuccess = (data: NewsListProps[]) => {
+		setNewsData(data);
+		setLoading(false);
+	};
+
+	const handleFetchError = (error: Error) => {
+		console.error('Error fetching data from server:', error);
+		// If fetch fails, use cached data as backup
+		const cachedData = localStorage.getItem('cachedNewsData');
+		if (cachedData) {
+			try {
+				const parsedData = JSON.parse(cachedData);
+				setNewsData(parsedData);
+				setLoading(false);
+			} catch (parseError) {
+				console.error('Error parsing cached data:', parseError);
+			}
+		} else {
+			console.error('No cached data available.');
+		}
+	};
+
 	useEffect(() => {
 		const fetchNewsData = async () => {
+			console.log('Fetch data: trying to fetch');
 			try {
 				if (!apiKey) {
 					throw new Error('API key not available');
 				}
 
-				const response = await fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1&apikey=${apiKey}`);
+				const response = await fetch(`https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=IBM&limit=10000&apikey=${apiKey}`);
 
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
@@ -34,33 +58,23 @@ export default function NewsList() {
 
 				const data = await response.json();
 
-				localStorage.setItem('cachedNewsData', JSON.stringify(data.feed));
-				setNewsData(data.feed);
-				setLoading(false);
+				// update localStorage only if data is not empty, to avoid undefined, empty object
+				if (data.length > 0) {
+					localStorage.setItem('cachedNewsData', JSON.stringify(data));
+				}
+
+				handleFetchSuccess(data.feed);
 			} catch (error) {
-				console.error('Error fetching news data:', error);
-				setLoading(false);
+				handleFetchError(error);
 			}
 		};
-		// Due to 25 api request limitation per day, use cache in local storage
-		const cachedData = localStorage.getItem('cachedNewsData');
-		if (cachedData !== 'undefined' || null) {
-			try {
-				setNewsData(JSON.parse(cachedData || '{}'));
-				setLoading(false);
-			} catch (error) {
-				console.error('Error parsing cached data:', error);
-				// Optionally, handle the error by fetching data from the server
-				fetchNewsData();
-			}
-		} else {
-			fetchNewsData();
-		}
+		fetchNewsData();
+		console.log('Fetch data: data fetched from server via api call');
 	}, [apiKey]);
 
 	return (
 		<div className="container mt-24 mx-auto px-4">
-			<h1 className="text-2xl font-bold mb-7">News & Sentiment Trending</h1>
+			<h1 className="text-2xl font-bold mb-7">News & Sentiment Trending for IBM</h1>
 
 			{/* <pre>{JSON.stringify(newsData, null, 2)}</pre> */}
 
