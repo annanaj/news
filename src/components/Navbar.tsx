@@ -27,7 +27,7 @@ export default function Navbar() {
 	const [activePage, setActivePage] = useState<number | null>(null);
 
 	return (
-		<nav className="fixed z-20 top-0 start-0 w-full bg-gray-900 border-b border-gray-600">
+		<nav className="fixed z-1 top-0 start-0 w-full bg-gray-900 border-b border-gray-600">
 			<div className="flex flex-wrap items-center justify-between max-w-screen-2xl mx-auto px-4 py-2">
 				<div className="flex items-center space-x-3">
 					<img src={logo} className="h-12" alt="logo" />

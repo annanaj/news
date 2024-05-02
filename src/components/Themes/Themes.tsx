@@ -27,12 +27,16 @@ export default function Themes({ themes, heading, onSelectTheme }: ListProps) {
 					<li
 						className={selectedIndex === index ? 'bg-gray-700 p-2 rounded' : 'p-2 rounded'}
 						key={theme}
-						onClick={() => {
-							setSelectedIndex(index);
-							onSelectTheme(theme);
-						}}
 					>
-						{theme}
+						<button
+							type="button"
+							onClick={() => {
+								setSelectedIndex(index);
+								onSelectTheme(theme);
+							}}
+						>
+							{theme}
+						</button>
 					</li>
 				))}
 			</ul>
