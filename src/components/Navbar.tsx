@@ -41,7 +41,7 @@ export default function Navbar() {
 								to={page.href}
 								className={`text-base ${
 									activePage === page.id ? 'inherit font-bold' : 'inherit font-normal'
-								}`}
+								} hover:text-white`}
 								onClick={() => setActivePage(page.id)}
 							>
 								{page.label}

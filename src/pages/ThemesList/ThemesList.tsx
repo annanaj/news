@@ -2,8 +2,9 @@ import { useState } from 'react';
 
 import Alert from '../../components/Alert/Alert';
 import Button from '../../components/Button/Button';
-import logo from '../../assets/logo.webp';
 import Themes from '../../components/Themes/Themes';
+
+import logo from '../../assets/logo.webp';
 
 export default function ThemesList() {
 	const [count, setCount] = useState(0);
