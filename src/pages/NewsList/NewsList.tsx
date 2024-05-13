@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 
+import placeholder from '../../assets/placeholder.svg';
+
 interface NewsListProps {
 	title: string,
 	summary: string,
 	time_published: string,
 	authors: string,
+	banner_image: string | null,
 }
 
 export default function NewsList() {
@@ -89,7 +92,12 @@ export default function NewsList() {
 			{newsData ? (
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
 					{newsData.map((news: NewsListProps) => (
-						<div key={news.title} className="flex flex-col h-full p-6 mb-4 bg-gray-50 rounded-lg shadow-lg">
+						<div key={news.title} className="flex flex-col h-full p-6 mb-4 bg-gray-50 rounded-2xl shadow-lg">
+							{news.banner_image ? (
+								<img src={news.banner_image} alt={news.title} className="mb-4 rounded-xl shadow-lg" />
+							) : (
+								<img src={placeholder} alt="article" className="mb-4 rounded-xl shadow-lg" />
+							)}
 							<h2 className="text-xl font-bold mb-2 text-gray-900">{news.title}</h2>
 							<p className="text-gray-700">{news.summary}</p>
 							<div className="flex justify-between gap-4 mt-auto text-gray-400 text-sm">
