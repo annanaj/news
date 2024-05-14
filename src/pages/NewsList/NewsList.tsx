@@ -2,19 +2,24 @@ import { useState, useEffect } from 'react';
 
 import placeholder from '../../assets/placeholder.svg';
 
-interface NewsListProps {
-	title: string,
-	summary: string,
-	time_published: string,
-	authors: string,
-	banner_image: string | null,
-}
 import formatPublishedDate from '../../utils/dateFormatter';
 import { NewsData } from '../../types/newsData';
+import { TopicColors } from '../../types/topicColors';
 
 const apiKey = process.env.NEWS_API_KEY;
-const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1000000&apikey=${apiKey}`;
+const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1000&apikey=${apiKey}`;
 const cachedData = localStorage.getItem('cachedNewsData');
+
+const topicColors: TopicColors = {
+	Earnings: 'bg-indigo-500',
+	Technology: 'bg-teal-500',
+	Manufacturing: 'bg-emerald-500',
+	'Economy - Monetary': 'bg-orange-500',
+	'Retail & Wholesale': 'bg-rose-500',
+	'Financial Markets': 'bg-sky-500',
+	'Life Sciences': 'bg-cyan-500',
+	Finance: 'bg-yellow-500',
+};
 
 export default function NewsList() {
 	const [newsData, setNewsData] = useState<NewsData[]>([]);
@@ -57,7 +62,7 @@ export default function NewsList() {
 
 				const data = await response.json();
 
-				// due to api daily limit, store data into localStorage only when data from server is not empty to avoid undefined object
+				// due to api daily limit, store data into localStorage only when data from server is not empty
 				if (data && data.feed && data.feed.length > 0) {
 					localStorage.setItem('cachedNewsData', JSON.stringify(data.feed));
 					console.log('Fetch data: data also stored in localStorage');
@@ -89,8 +94,7 @@ export default function NewsList() {
 		<div className="container mt-24 mx-auto px-7">
 			<h1 className="text-2xl font-bold mb-7">News & Sentiment Trending for Apple</h1>
 
-			{/* <pre>{JSON.stringify(newsData, null, 2)}</pre> */}
-			{/*<pre>{JSON.stringify(cachedData, null, 2)}</pre>*/}
+			{/* <pre>{JSON.stringify(data, null, 2)}</pre> */}
 
 			{loading && (
 				<div>
@@ -102,29 +106,50 @@ export default function NewsList() {
 
 			{data && data.length > 0 ? (
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 min-w-96">
-					{data.map((data: NewsData) => (
+					{data.map((newsItem: NewsData) => (
 						<div
-							key={`${data.url}-${data.time_published}`}
-							className="flex flex-col h-full p-6 mb-4 bg-gray-50 rounded-lg shadow-lg"
+							key={`${newsItem.url}-${newsItem.time_published}`}
+							className="flex flex-col h-full p-6 mb-6 bg-gray-50 rounded-lg shadow-lg"
 						>
-							<h2 className="text-xl font-bold mb-2 text-gray-900">{data.title}</h2>
-							<p className="text-gray-700">{data.summary}</p>
-					{newsData.map((news: NewsData) => (
-						<div key={`${news.url}-${news.time_published}`}
-							 className="flex flex-col h-full p-6 mb-4 bg-gray-50 rounded-lg shadow-lg">
-							{news.banner_image ? (
-								<img src={news.banner_image} alt={news.title} className="mb-4 rounded-xl shadow-lg" />
-							) : (
-								<img src={placeholder} alt="article" className="mb-4 rounded-xl shadow-lg" />
-							)}
-							<h2 className="text-xl font-bold mb-2 text-gray-900">{news.title}</h2>
-							<p className="text-gray-700">{news.summary}</p>
+							<div className="relative">
+								{newsItem.banner_image ? (
+									<img
+										src={newsItem.banner_image}
+										alt={newsItem.title}
+										className="h-[180px] xl:h-[250px] mb-6 w-full object-cover rounded-xl shadow-lg"
+									/>
+								) : (
+									<img
+										src={placeholder}
+										alt={newsItem.title}
+										className="h-[180px] xl:h-[250px] mb-6 w-full object-cover rounded-xl shadow-lg"
+									/>
+								)}
+								<ul className="absolute bottom-7 right-0">
+									{newsItem.topics.slice(0, 3).map((topicData) => {
+										let className = 'py-1 px-3 mb-1 rounded-l-full shadow-lg text-sm opacity-85';
+										const topicColor = topicColors[topicData.topic as keyof TopicColors] || 'bg-gray-500';
+										className += ` ${topicColor}`;
+										return (
+											<li
+												key={`${newsItem.url}-${newsItem.time_published}-${topicData.topic}`}
+												className={className}
+											>
+												{topicData.topic}
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+							<h2 className="text-xl font-bold mb-4 text-gray-900">{newsItem.title}</h2>
+							<p className="text-gray-700 mb-2">{newsItem.summary}</p>
+							<a href={newsItem.url} target="_blank" rel="noreferrer">Full article</a>
 							<div className="flex justify-between gap-4 mt-auto text-gray-400 text-sm">
 								<p className="self-end whitespace-nowrap">
-									{formatPublishedDate(data.time_published)}
+									{formatPublishedDate(newsItem.time_published)}
 								</p>
 								<p>
-									{data.authors}
+									{newsItem.authors}
 								</p>
 							</div>
 						</div>
@@ -134,5 +159,5 @@ export default function NewsList() {
 				<p>No news available, requests exceeded the daily limit</p>
 			)}
 		</div>
-	)
+	);
 }
