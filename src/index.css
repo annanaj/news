@@ -21,7 +21,6 @@
 }
 
 a {
-  font-weight: 500;
   color: #4f46e5;
   text-decoration: inherit;
 }
@@ -82,4 +81,34 @@ button:focus-visible {
 
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+::view-transition-old(root) {
+	animation: slide-left 0.5s forwards;
+}
+
+::view-transition-new(root) {
+	animation: slide-right 0.5s forwards;
+}
+
+@keyframes slide-left {
+	from {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	to {
+		transform: translateX(-100%);
+		opacity: 0;
+	}
+}
+
+@keyframes slide-right {
+	from {
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
