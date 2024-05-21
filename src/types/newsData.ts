@@ -2,7 +2,7 @@ export interface NewsData {
 	title: string,
 	summary: string,
 	time_published: string,
-	authors: string,
+	authors: string[] | null,
 	url: string,
 	banner_image: string | null,
 	topics: Topic[],
