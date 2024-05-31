@@ -12,13 +12,18 @@ interface Pages {
 
 const pages: Pages[] = [
 	{
-		label: 'News',
+		label: 'Home',
 		id: 0,
+		href: routes.homepage,
+	},
+	{
+		label: 'News',
+		id: 1,
 		href: routes.newsList,
 	},
 	{
 		label: 'Themes',
-		id: 1,
+		id: 2,
 		href: routes.themesList,
 	},
 ];
@@ -30,8 +35,12 @@ export default function Navbar() {
 		<nav className="fixed z-10 top-0 start-0 w-full bg-gray-900 border-b border-gray-600">
 			<div className="flex flex-wrap items-center justify-between max-w-screen-2xl mx-auto px-4 py-2">
 				<div className="flex items-center space-x-3">
-					<img src={logo} className="h-12" alt="logo" />
-					<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray">Financial updates</span>
+					<Link to="/">
+						<img src={logo} className="h-12" alt="logo" />
+					</Link>
+					<Link to="/">
+						<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray">Financial updates</span>
+					</Link>
 				</div>
 				<div className="items-center justify-between flex w-auto">
 					<ul className="flex p-0 font-medium rounded-lg space-x-8 flex-row mt-0">
