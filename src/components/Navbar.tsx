@@ -39,7 +39,7 @@ export default function Navbar() {
 						<img src={logo} className="h-12" alt="logo" />
 					</Link>
 					<Link to="/">
-						<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray">Financial updates</span>
+						<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-50">Financial updates</span>
 					</Link>
 				</div>
 				<div className="items-center justify-between flex w-auto">
@@ -49,8 +49,8 @@ export default function Navbar() {
 								key={page.id}
 								to={page.href}
 								className={`text-base ${
-									activePage === page.id ? 'inherit font-bold' : 'inherit font-normal'
-								} hover:text-white`}
+									activePage === page.id ? 'text-gray-50 border-b border-gray-50' : 'inherit'
+								} hover:text-gray-50`}
 								onClick={() => setActivePage(page.id)}
 							>
 								{page.label}

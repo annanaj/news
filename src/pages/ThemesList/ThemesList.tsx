@@ -24,7 +24,7 @@ export default function ThemesList() {
 	};
 
 	return (
-		<div className="flex flex-col items-center gap-y-10">
+		<div className="container max-w-screen-lg mt-28 mx-auto px-10 flex flex-col items-center gap-y-10">
 			<div>
 				<img src={logo} className="text-center h-40" alt="logo" />
 			</div>
