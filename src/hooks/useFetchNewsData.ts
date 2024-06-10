@@ -6,7 +6,12 @@ const apiKey = process.env.NEWS_API_KEY;
 const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1000000&apikey=${apiKey}`;
 const cachedData = localStorage.getItem('cachedNewsData');
 
-export default function useFetchNewsData() {
+interface UseFetchNewsDataReturn {
+	data: NewsData[];
+	loading: boolean;
+}
+
+export default function useFetchNewsData(): UseFetchNewsDataReturn {
 	const [newsData, setNewsData] = useState<NewsData[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 
@@ -48,7 +53,10 @@ export default function useFetchNewsData() {
 
 				// due to api daily limit, store data into localStorage only when data from server is not empty
 				if (data && data.feed && data.feed.length > 0) {
-					localStorage.setItem('cachedNewsData', JSON.stringify(data.feed));
+					localStorage.setItem(
+						'cachedNewsData',
+						JSON.stringify(data.feed)
+					);
 					console.log('Fetch data: data also stored in localStorage');
 					handleFetchSuccess(data.feed);
 				} else {
@@ -71,5 +79,5 @@ export default function useFetchNewsData() {
 		data = JSON.parse(cachedData);
 	}
 
-	return { data, loading } as { data: NewsData[], loading: boolean };
+	return { data, loading } as { data: NewsData[]; loading: boolean };
 }

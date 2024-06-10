@@ -21,17 +21,19 @@ export default function WeatherSign() {
 	}
 
 	return (
-		<div className="flex items-center gap-3">
+		<div className="flex items-center gap-2">
 			<div className="text-xs">
-				<h2>
-					{data.location.name}
-				</h2>
+				<h2>{data.location.name}</h2>
 				<p>
 					{data.current.temp_c}
 					°C
 				</p>
 			</div>
-			<img src={data.current.condition.icon} alt={data.current.condition.text} />
+			<img
+				width="40px"
+				src={data.current.condition.icon}
+				alt={data.current.condition.text}
+			/>
 		</div>
 	);
 }

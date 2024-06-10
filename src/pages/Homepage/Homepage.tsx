@@ -21,28 +21,32 @@ export default function NewsList() {
 	};
 
 	return (
-		<div className="container max-w-screen-lg mt-28 mx-auto px-10">
-			<div className="max-w-screen-md mx-auto">
-				<h1 className="mb-10 text-4xl font-semibold text-center text-balance">
-					Financial updates for market
-					trending
+		<div className="container mx-auto mt-24 max-w-screen-lg px-10">
+			<div className="mx-auto max-w-screen-md">
+				<h1 className="mb-10 text-balance text-center text-5xl font-bold">
+					Financial updates for market trending
 				</h1>
-				<p className="mb-4 text-pretty text-center">
-					Looking for market news data to augment your trading strategy? You may have just found it.
+				<p className="mb-4 text-pretty">
+					Looking for market news data to train your LLM models or to
+					augment your trading strategy and results? You have just
+					found it.
 				</p>
-				<p className="mb-10 text-pretty text-center">
+				<p className="mb-10 text-pretty">
 					This API returns live and historical market news & sentiment
-					data from a large & growing selection of premier news outlets around the world,
-					covering stocks, cryptocurrencies, forex, and a wide range of topics such as
-					fiscal policy, mergers & acquisitions, IPOs, etc.
+					data from a large & growing selection of premier news
+					outlets around the world, covering stocks, cryptocurrencies,
+					forex. This API, combined with our core stock API,
+					fundamental data, and technical indicator APIs, can provide
+					you with a 360-degree view of the financial market and the
+					broader economy.
 				</p>
 			</div>
 			<h2 className="mb-4 text-2xl font-medium">Latest updates</h2>
 			{data && data.length > 0 ? (
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 min-w-96 mb-10">
+				<div className="mb-10 grid min-w-96 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
 					{data.slice(0, 3).map((newsItem: NewsData) => (
 						<article
-							className="relative flex flex-col h-full p-6 mb-6 bg-gray-50 rounded-lg shadow-lg"
+							className="relative mb-6 flex h-full flex-col rounded-lg bg-gray-50 p-6 shadow-lg"
 							key={`${newsItem.url}-${newsItem.time_published}`}
 						>
 							<a
@@ -53,15 +57,19 @@ export default function NewsList() {
 								<img
 									src={newsItem.banner_image || placeholder}
 									alt={newsItem.title}
-									className="h-[180px] xl:h-[180px] mb-6 w-full object-cover rounded-xl shadow-lg filter grayscale"
+									className="mb-6 h-[180px] w-full rounded-xl object-cover shadow-lg grayscale filter xl:h-[180px]"
 								/>
 								<h2 className="text-xl font-bold text-gray-900">
-									{newsItem.title.length > 50 ? `${newsItem.title.slice(0, 50)}…` : newsItem.title}
+									{newsItem.title.length > 50
+										? `${newsItem.title.slice(0, 50)}…`
+										: newsItem.title}
 								</h2>
 							</a>
-							<div className="flex justify-between gap-4 mt-auto text-gray-500 text-sm">
+							<div className="mt-auto flex justify-between gap-4 text-sm text-gray-500">
 								<p className="self-end whitespace-nowrap">
-									{formatPublishedDate(newsItem.time_published)}
+									{formatPublishedDate(
+										newsItem.time_published
+									)}
 								</p>
 								<p>{newsItem.authors}</p>
 							</div>
@@ -69,9 +77,7 @@ export default function NewsList() {
 					))}
 				</div>
 			) : (
-				<p>
-					No news available, daily limit has been exceeded
-				</p>
+				<p>No news available, daily limit has been exceeded</p>
 			)}
 		</div>
 	);

@@ -22,11 +22,6 @@ html {
 a {
 	color-scheme: light dark;
 	color: light-dark(#4f46e5, #6366f1); /* tw indigo 600 royal blue and tw indigo 500 blueberry */
-	text-decoration: underline;
-}
-
-a:hover {
-	text-decoration: none;
 }
 
 h1 {
