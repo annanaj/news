@@ -18,7 +18,7 @@ export default function NewsItem() {
 	}
 
 	return (
-		<div className="container max-w-[700px] mt-[100px] mx-auto">
+		<div className="container max-w-[700px] mt-[80px] mx-auto">
 			<div className="flex items-center mb-7">
 				{loading ? (
 					<div>
