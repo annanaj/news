@@ -1,6 +1,5 @@
-import { useState } from 'react';
-
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 import routes from '../routes';
 import logo from '../assets/logo.webp';
@@ -31,7 +30,17 @@ const pages: Pages[] = [
 ];
 
 export default function Navbar() {
+	const location = useLocation();
 	const [activePage, setActivePage] = useState<number | null>(null);
+
+	useEffect(() => {
+		const currentPage = pages.find(
+			(page) => page.href === location.pathname
+		);
+		if (currentPage) {
+			setActivePage(currentPage.id);
+		}
+	}, [location.pathname]);
 
 	return (
 		<nav className="fixed start-0 top-0 z-10 w-full bg-gray-900 text-white">

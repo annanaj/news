@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { NewsData } from '../types/newsData';
 
-const apiKey = process.env.NEWS_API_KEY;
+const apiKey = process.env.VITE_NEWS_API_KEY;
 const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&limit=1000000&apikey=${apiKey}`;
 const cachedData = localStorage.getItem('cachedNewsData');
 
