@@ -21,24 +21,20 @@ export default function NewsList() {
 	};
 
 	return (
-		<div className="container max-w-screen-lg mt-24 mx-auto px-10">
+		<div className="container max-w-screen-lg mt-28 mx-auto px-10">
 			<div className="max-w-screen-md mx-auto">
-				<h1 className="mb-10 text-5xl font-bold text-center text-balance">
+				<h1 className="mb-10 text-4xl font-semibold text-center text-balance">
 					Financial updates for market
 					trending
 				</h1>
-				<p className="mb-4 text-pretty">
-					Looking for market news data to train your LLM models or to augment your trading strategy?
-					You have just found it.
+				<p className="mb-4 text-pretty text-center">
+					Looking for market news data to augment your trading strategy? You may have just found it.
 				</p>
-				<p className="mb-10 text-pretty">
+				<p className="mb-10 text-pretty text-center">
 					This API returns live and historical market news & sentiment
 					data from a large & growing selection of premier news outlets around the world,
 					covering stocks, cryptocurrencies, forex, and a wide range of topics such as
-					fiscal policy, mergers & acquisitions, IPOs, etc. This API, combined with our
-					core stock API, fundamental data, and technical indicator APIs,
-					can provide you with a 360-degree view of the financial market and
-					the broader economy.
+					fiscal policy, mergers & acquisitions, IPOs, etc.
 				</p>
 			</div>
 			<h2 className="mb-4 text-2xl font-medium">Latest updates</h2>

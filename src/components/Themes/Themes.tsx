@@ -13,7 +13,7 @@ export default function Themes({ themes, heading, onSelectTheme }: ListProps) {
 	return (
 		<>
 			<motion.h1
-				className="text-indigo-600 p-4"
+				className="text-indigo-600 p-4 font-semibold"
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1.5 }}

@@ -15,6 +15,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+html {
+	overflow-y: scroll;
+}
+
 a {
 	color-scheme: light dark;
 	color: light-dark(#4f46e5, #6366f1); /* tw indigo 600 royal blue and tw indigo 500 blueberry */
@@ -48,9 +52,11 @@ button:hover {
 	border-color: #646cff;
 }
 
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
+button:focus-visible,
+input:focus-visible {
+	outline: 1px solid #5e56d5;
+	outline-offset: 0;
+	border-color: transparent;
 }
 
 ::view-transition-old(root) {
