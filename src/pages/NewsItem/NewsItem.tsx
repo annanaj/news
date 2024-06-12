@@ -11,36 +11,43 @@ export default function NewsItem() {
 
 	if (!newsItem) {
 		return (
-			<div className="container mt-[150px] mx-auto">
+			<div className="container mx-auto mt-[150px]">
 				<p className="text-center">No news item found for this ID.</p>
 			</div>
 		);
 	}
 
 	return (
-		<div className="container max-w-[700px] mt-[80px] mx-auto">
-			<div className="flex items-center mb-7">
+		<div className="container mx-auto mt-[100px] max-w-[700px]">
+			<div className="mb-7 flex items-center">
 				{loading ? (
 					<div>
 						<p className="mt-2">Loading article data…</p>
 					</div>
 				) : (
-					<div className="flex flex-col p-6 mb-4">
-						<h1 className="text-3xl mb-8 leading-normal font-semibold text-gray-100">{newsItem.title}</h1>
+					<div className="mb-4 flex flex-col p-6">
+						<h1 className="mb-8 text-3xl font-semibold leading-normal text-gray-100">
+							{newsItem.title}
+						</h1>
 						<img
 							src={newsItem.banner_image || placeholder}
 							alt={newsItem.title}
 							className="mb-6 rounded-xl shadow-lg"
 						/>
 						<p className="mb-6">{newsItem.summary}</p>
-						<a href={newsItem.url} target="_blank" className="mb-6" rel="noreferrer">Read everything</a>
-						<div className="flex justify-between gap-4 mt-auto mb-6 text-gray-500 text-sm">
+						<a
+							href={newsItem.url}
+							target="_blank"
+							className="mb-6"
+							rel="noreferrer"
+						>
+							Read everything
+						</a>
+						<div className="mb-6 mt-auto flex justify-between gap-4 text-sm text-gray-500">
 							<p className="self-end whitespace-nowrap">
 								{formatPublishedDate(newsItem.time_published)}
 							</p>
-							<p>
-								{newsItem.authors?.join(', ')}
-							</p>
+							<p>{newsItem.authors?.join(', ')}</p>
 						</div>
 					</div>
 				)}

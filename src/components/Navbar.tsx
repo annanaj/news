@@ -7,9 +7,9 @@ import logo from '../assets/logo.webp';
 import WeatherSign from './WeatherSign/WeatherSign';
 
 interface Pages {
-	label: string,
-	id: number,
-	href: string,
+	label: string;
+	id: number;
+	href: string;
 }
 
 const pages: Pages[] = [
@@ -34,25 +34,29 @@ export default function Navbar() {
 	const [activePage, setActivePage] = useState<number | null>(null);
 
 	return (
-		<nav className="fixed z-10 top-0 start-0 w-full bg-gray-900 border-b border-gray-600">
-			<div className="flex flex-wrap items-center justify-between max-w-screen-2xl mx-auto px-4 py-2">
-				<div className="flex items-center space-x-3 mr-auto">
+		<nav className="fixed start-0 top-0 z-10 w-full bg-gray-900 text-white">
+			<div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between px-4 py-2">
+				<div className="mr-auto flex items-center space-x-3">
 					<Link to="/">
 						<img src={logo} className="h-12" alt="logo" />
 					</Link>
-					<Link to="/">
-						<span className="self-center text-2xl font-semibold whitespace-nowrap text-gray-50">Financial updates</span>
+					<Link className="text-white" to="/">
+						<span className="self-center whitespace-nowrap text-base">
+							Financial updates
+						</span>
 					</Link>
 				</div>
-				<div className="items-center justify-between flex w-auto">
-					<ul className="flex px-8 font-medium rounded-lg space-x-5 flex-row mt-0">
+				<div className="flex w-auto items-center justify-between">
+					<ul className="mt-0 flex flex-row space-x-8 rounded-lg px-14">
 						{pages.map((page) => (
 							<Link
 								key={page.id}
 								to={page.href}
-								className={`text-base ${
-									activePage === page.id ? 'text-gray-50 border-b border-gray-50' : 'inherit'
-								} hover:text-gray-50`}
+								className={`text-base hover:text-white ${
+									activePage === page.id
+										? 'border-b border-white font-bold text-white'
+										: 'text-white'
+								}`}
 								onClick={() => setActivePage(page.id)}
 							>
 								{page.label}

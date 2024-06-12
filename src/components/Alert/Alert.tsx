@@ -1,18 +1,18 @@
 import { ReactNode } from 'react';
 
 interface AlertProps {
-	children: ReactNode,
-	onClose: () => void,
+	children: ReactNode;
+	onClose: () => void;
 }
 
 export default function Alert({ children, onClose }: AlertProps) {
 	return (
-		<div className="absolute top-50 end-0 flex gap-4 bg-indigo-500 ps-10 pe-12 py-5 rounded">
+		<div className="top-50 absolute end-0 flex gap-4 rounded bg-indigo-500 py-5 pe-12 ps-10">
 			{children}
 			<button
 				type="button"
 				onClick={onClose}
-				className="absolute top-2 right-1 p-0 inline-flex items-center justify-center text-gray-200 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+				className="absolute right-1 top-2 inline-flex items-center justify-center p-0 text-gray-200 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
 			>
 				<span className="sr-only">Close message</span>
 				<svg

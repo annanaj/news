@@ -2,9 +2,9 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface ListProps {
-	themes: string[],
-	heading: string,
-	onSelectTheme: (theme:string) => void,
+	themes: string[];
+	heading: string;
+	onSelectTheme: (theme: string) => void;
 }
 
 export default function Themes({ themes, heading, onSelectTheme }: ListProps) {
@@ -13,7 +13,7 @@ export default function Themes({ themes, heading, onSelectTheme }: ListProps) {
 	return (
 		<>
 			<motion.h1
-				className="text-indigo-600 p-4 font-semibold"
+				className="p-4 text-indigo-600"
 				initial={{ opacity: 0, y: -20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 1.5 }}
@@ -21,11 +21,15 @@ export default function Themes({ themes, heading, onSelectTheme }: ListProps) {
 				{heading}
 			</motion.h1>
 
-			{ themes.length === 0 && <p>No theme found</p> }
+			{themes.length === 0 && <p>No theme found</p>}
 			<ul>
 				{themes.map((theme, index) => (
 					<li
-						className={selectedIndex === index ? 'bg-gray-700 p-2 rounded' : 'p-2 rounded'}
+						className={
+							selectedIndex === index
+								? 'rounded bg-gray-700 p-2'
+								: 'rounded p-2'
+						}
 						key={theme}
 					>
 						<button

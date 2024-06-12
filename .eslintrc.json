@@ -1,0 +1,11 @@
+{
+    "extends": [
+        "@ntvr/eslint-config/javascript",
+        "@ntvr/eslint-config/react",
+        "@ntvr/eslint-config/typescript",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
+    ]
+}
