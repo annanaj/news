@@ -1,4 +1,5 @@
 import placeholder from '../../assets/placeholder.svg';
+import Ticker from '../../components/Ticker/Ticker';
 import { NewsData } from '../../types/newsData';
 import formatPublishedDate from '../../utils/dateFormatter';
 import useURL from '../../hooks/useSearchParams';
@@ -18,15 +19,15 @@ export default function NewsItem() {
 	}
 
 	return (
-		<div className="container mx-auto mt-[100px] max-w-[700px]">
-			<div className="mb-7 flex items-center">
+		<div className="container mx-auto mt-[65px] max-w-[700px]">
+			<div className="mb-7 flex">
 				{loading ? (
 					<div>
 						<p className="mt-2">Loading article data…</p>
 					</div>
 				) : (
 					<div className="mb-4 flex flex-col p-6">
-						<h1 className="mb-8 text-3xl font-semibold leading-normal text-gray-100">
+						<h1 className="mb-6 text-3xl font-semibold leading-normal">
 							{newsItem.title}
 						</h1>
 						<img
@@ -38,16 +39,24 @@ export default function NewsItem() {
 						<a
 							href={newsItem.url}
 							target="_blank"
-							className="mb-6"
+							className="mb-2"
 							rel="noreferrer"
 						>
 							Read everything
 						</a>
-						<div className="mb-6 mt-auto flex justify-between gap-4 text-sm text-gray-500">
-							<p className="self-end whitespace-nowrap">
+						<div className="mb-4 mt-auto flex justify-between gap-4 text-sm text-gray-500">
+							<time className="self-end whitespace-nowrap">
 								{formatPublishedDate(newsItem.time_published)}
-							</p>
-							<p>{newsItem.authors?.join(', ')}</p>
+							</time>
+							<div>
+								<p className="text-right">
+									{newsItem.authors?.join(', ')}
+								</p>
+								<p>{newsItem.source_domain}</p>
+							</div>
+						</div>
+						<div className="space-x-2">
+							<Ticker ticker={newsItem.ticker_sentiment} />
 						</div>
 					</div>
 				)}
