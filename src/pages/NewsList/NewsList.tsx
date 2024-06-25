@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import { flushSync } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
 
+import NewsItem from '../../components/NewsItem/NewsItem';
 import useFetchNewsData from '../../hooks/useFetchNewsData';
-import formatPublishedDate from '../../utils/dateFormatter';
 import routes from '../../routes';
-import placeholder from '../../assets/placeholder.svg';
 import { NewsData } from '../../types/newsData';
 import { TopicColors } from '../../types/topicColors';
 
@@ -22,22 +19,8 @@ const topicColors: TopicColors = {
 
 export default function NewsList() {
 	const { data, loading } = useFetchNewsData();
-	const navigate = useNavigate();
 	const [searchText, setSearchText] = useState<string>('');
 	const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-
-	const handleClick =
-		(newsItem: NewsData) =>
-		(event: React.MouseEvent<HTMLAnchorElement>) => {
-			event.preventDefault();
-			document.startViewTransition(() => {
-				flushSync(() => {
-					navigate(
-						`${routes.newsItem}?id=${newsItem.time_published}`
-					);
-				});
-			});
-		};
 
 	const handleTopicClick = (topic: string) => {
 		const index = selectedTopics.indexOf(topic);
@@ -79,7 +62,7 @@ export default function NewsList() {
 	return (
 		<div className="container mx-auto mt-24 px-7">
 			<h1 className="mb-7 text-2xl font-bold">
-				News & Sentiment Trending for Apple
+				News & Sentiment Trending for Apple, Nvidia and Microsoft
 			</h1>
 
 			{loading ? (
@@ -120,60 +103,11 @@ export default function NewsList() {
 					{filteredData && filteredData.length > 0 ? (
 						<div className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3">
 							{filteredData.map((newsItem: NewsData) => (
-								<article
-									key={`${newsItem.url}-${newsItem.time_published}`}
-									className="relative mb-6 flex h-full flex-col rounded-lg bg-gray-50 p-6 shadow-lg"
-								>
-									<a
-										href={`${routes.newsItem}?id=${newsItem.time_published}`}
-										onClick={handleClick(newsItem)}
-									>
-										<img
-											src={
-												newsItem.banner_image ||
-												placeholder
-											}
-											alt={newsItem.title}
-											className="mb-6 h-[180px] w-full rounded-xl object-cover shadow-lg xl:h-[250px]"
-										/>
-										<h2 className="mb-4 line-clamp-5 text-xl font-bold text-gray-900">
-											{newsItem.title}
-										</h2>
-									</a>
-									<ul className="absolute right-0 top-6">
-										{newsItem.topics
-											.slice(0, 3)
-											.map((topicData) => {
-												const baseClassName =
-													'py-1 px-3 mb-1 rounded-l-full shadow-lg text-sm text-white';
-												const topicColor =
-													topicColors[
-														topicData.topic as keyof TopicColors
-													] || 'bg-gray-500';
-												const className = `${baseClassName} ${topicColor}`;
-												return (
-													<li
-														key={`${newsItem.url}-${newsItem.time_published}-${topicData.topic}`}
-														className={className}
-													>
-														{
-															topicData.topic.split(
-																' '
-															)[0]
-														}
-													</li>
-												);
-											})}
-									</ul>
-									<div className="mt-auto flex justify-between gap-4 text-sm text-gray-500">
-										<p className="self-end whitespace-nowrap">
-											{formatPublishedDate(
-												newsItem.time_published
-											)}
-										</p>
-										<p>{newsItem.authors}</p>
-									</div>
-								</article>
+								<NewsItem
+									key={newsItem.url}
+									newsItem={newsItem}
+									navigateTo={`${routes.newsItem}?id=${newsItem.time_published}`}
+								/>
 							))}
 						</div>
 					) : (

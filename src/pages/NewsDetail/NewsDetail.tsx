@@ -5,7 +5,7 @@ import formatPublishedDate from '../../utils/dateFormatter';
 import useURL from '../../hooks/useSearchParams';
 import useFetchNewsData from '../../hooks/useFetchNewsData';
 
-export default function NewsItem() {
+export default function NewsDetail() {
 	const { data, loading } = useFetchNewsData();
 	const { id } = useURL();
 	const newsItem = data.find((item: NewsData) => item.time_published === id);
@@ -13,7 +13,9 @@ export default function NewsItem() {
 	if (!newsItem) {
 		return (
 			<div className="container mx-auto mt-[150px]">
-				<p className="text-center">No news item found for this ID.</p>
+				<p className="text-center">
+					No news article found, try again later.
+				</p>
 			</div>
 		);
 	}
