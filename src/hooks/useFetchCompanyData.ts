@@ -1,38 +1,39 @@
 import { useState, useEffect } from 'react';
 
-import { NewsData } from '../types/newsData';
+import { CompanyData } from '../types/companyData';
 
-const apiKey = process.env.VITE_NEWS_API_KEY;
-const objects = ['NVDA', 'AAPL', 'MSFT'];
-const cachedData = localStorage.getItem('cachedNewsData');
+const apiKey = process.env.VITE_COMPANY_API_KEY;
+const objects = ['NVDA', 'AAPL', 'MSFT', 'AMZN', 'META', 'GOOG'];
+const cachedData = localStorage.getItem('cachedCompanyData');
 
 interface UseFetchDataReturn {
-	data: NewsData[];
+	data: CompanyData[];
 	loading: boolean;
 }
 
-export default function useFetchNewsData(): UseFetchDataReturn {
-	const [newsData, setNewsData] = useState<NewsData[]>([]);
+export default function useFetchCompanyData(): UseFetchDataReturn {
+	const [companyData, setCompanyData] = useState<CompanyData[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
 
-	const handleFetchSuccess = (data: NewsData[]) => {
-		setNewsData(data);
+	const handleFetchSuccess = (data: CompanyData[]) => {
+		setCompanyData(data);
 		setLoading(false);
 	};
 
 	const handleFetchError = (error: Error | unknown) => {
-		console.error('Error fetching news data from server:', error);
+		console.error('Error fetching company data from server:', error);
 		// if fetch fails - due to the api calls limit, use data from localStorage
 		if (cachedData) {
 			try {
 				const parsedData = JSON.parse(cachedData);
-				setNewsData(parsedData);
+				setCompanyData(parsedData);
 				setLoading(false);
 			} catch (parseError) {
 				console.error('Error parsing cached data:', parseError);
 			}
 		} else {
-			console.error('No news cached data available.');
+			console.error('No company cached data available.');
+			setLoading(false);
 		}
 	};
 
@@ -44,29 +45,34 @@ export default function useFetchNewsData(): UseFetchDataReturn {
 				}
 
 				const fetchPromises = objects.map(async (object) => {
-					const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=${object}&limit=10&apikey=${apiKey}`;
+					const apiUrl = `https://financialmodelingprep.com/api/v3/profile/${object}?apikey=${apiKey}`;
 					const response = await fetch(apiUrl);
+
 					if (!response.ok) {
-						throw new Error('Network response was not ok');
+						throw new Error(
+							`Network response was not ok: ${response.statusText}`
+						);
 					}
+
 					return response.json();
 				});
 
 				const results = await Promise.all(fetchPromises);
-				const combinedData = results.flatMap(
-					(result) => result.feed || []
-				);
+				const combinedData = results.flat();
 
-				// due to api daily limit, store data into localStorage only when data from server is not empty
 				if (combinedData.length > 0) {
 					localStorage.setItem(
-						'cachedNewsData',
+						'cachedCompanyData',
 						JSON.stringify(combinedData)
 					);
-					console.log('Fetch data: data also stored in localStorage');
+					console.log(
+						'Fetch data: company data also stored in localStorage'
+					);
 					handleFetchSuccess(combinedData);
 				} else {
-					handleFetchError(new Error('No data fetched from API'));
+					handleFetchError(
+						new Error('No company data fetched from API')
+					);
 				}
 			} catch (error) {
 				handleFetchError(error);
@@ -76,5 +82,5 @@ export default function useFetchNewsData(): UseFetchDataReturn {
 		fetchData();
 	}, []);
 
-	return { data: newsData, loading };
+	return { data: companyData, loading };
 }

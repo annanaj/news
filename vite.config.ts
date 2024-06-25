@@ -9,10 +9,13 @@ export default defineConfig(({ mode }) => {
 			'process.env.VITE_NEWS_API_KEY': JSON.stringify(
 				env.VITE_NEWS_API_KEY
 			),
+			'process.env.VITE_COMPANY_API_KEY': JSON.stringify(
+				env.VITE_COMPANY_API_KEY
+			),
 			'process.env.VITE_WEATHER_API_KEY': JSON.stringify(
 				env.VITE_WEATHER_API_KEY
 			),
 		},
 		plugins: [react()],
-	}
-})
+	};
+});
