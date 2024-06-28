@@ -57,9 +57,7 @@ export default function NewsDetail() {
 								<p>{newsItem.source_domain}</p>
 							</div>
 						</div>
-						<div className="space-x-2">
-							<Ticker ticker={newsItem.ticker_sentiment} />
-						</div>
+						<Ticker ticker={newsItem.ticker_sentiment} />
 					</div>
 				)}
 			</div>

@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 
 import placeholder from '../../assets/placeholder.svg';
 import { NewsData } from '../../types/newsData';
+import { TopicColors } from '../../types/topicColors';
 import formatPublishedDate from '../../utils/dateFormatter';
 
 type NewsItemProps = {
 	newsItem: NewsData;
+	topicColors: TopicColors;
+	showTopics: boolean;
 	navigateTo: string;
 	grayscale?: boolean;
 };
@@ -14,6 +17,8 @@ type NewsItemProps = {
 export default function NewsItem({
 	newsItem,
 	navigateTo,
+	topicColors,
+	showTopics,
 	grayscale = false,
 }: NewsItemProps) {
 	const navigate = useNavigate();
@@ -43,6 +48,26 @@ export default function NewsItem({
 					className={`mb-6 ${grayscale ? 'grayscale filter' : ''} h-[180px] w-full rounded-xl object-cover shadow-lg`}
 				/>
 			</a>
+			{showTopics && (
+				<ul className="absolute right-0 top-6">
+					{newsItem.topics.slice(0, 3).map((topicData) => {
+						const baseClassName =
+							'py-1 px-3 mb-1 rounded-l-full shadow-lg text-sm text-white';
+						const topicColor =
+							topicColors[topicData.topic as keyof TopicColors] ||
+							'bg-gray-500';
+						const className = `${baseClassName} ${topicColor}`;
+						return (
+							<li
+								key={`${newsItem.url}-${newsItem.time_published}-${topicData.topic}`}
+								className={className}
+							>
+								{topicData.topic.split(' ')[0]}
+							</li>
+						);
+					})}
+				</ul>
+			)}
 			<div className="flex h-full flex-col">
 				<a
 					aria-hidden="true"
@@ -51,8 +76,8 @@ export default function NewsItem({
 					className="hover:underline hover:decoration-gray-500"
 				>
 					<h2 className="relative z-10 mb-4 text-xl font-bold text-gray-900">
-						{newsItem.title.length > 50
-							? `${newsItem.title.slice(0, 50)}…`
+						{newsItem.title.length > 40
+							? `${newsItem.title.slice(0, 40)}…`
 							: newsItem.title}
 					</h2>
 				</a>

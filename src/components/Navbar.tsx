@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
 
 import routes from '../routes';
 import logo from '../assets/logo.webp';
@@ -32,6 +33,7 @@ const pages: Pages[] = [
 export default function Navbar() {
 	const location = useLocation();
 	const [activePage, setActivePage] = useState<number | null>(null);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
 	useEffect(() => {
 		const currentPage = pages.find(
@@ -55,25 +57,59 @@ export default function Navbar() {
 						</span>
 					</Link>
 				</div>
-				<div className="flex w-auto items-center justify-between">
-					<ul className="mt-0 flex flex-row space-x-8 rounded-lg px-14">
-						{pages.map((page) => (
-							<Link
-								key={page.id}
-								to={page.href}
-								className={`text-base hover:text-white ${
-									activePage === page.id
-										? 'border-b border-white font-bold text-white'
-										: 'text-white'
-								}`}
-								onClick={() => setActivePage(page.id)}
-							>
-								{page.label}
-							</Link>
-						))}
-					</ul>
+				<div className="block md:hidden">
+					<button
+						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+						className="bg-transparent text-white focus:outline-none"
+					>
+						{isMobileMenuOpen ? (
+							<RxCross1 size={24} />
+						) : (
+							<RxHamburgerMenu size={24} />
+						)}
+					</button>
 				</div>
-				<WeatherSign />
+				<div
+					className={`${
+						isMobileMenuOpen
+							? 'fixed inset-0 z-20 flex flex-col bg-gray-900'
+							: 'hidden'
+					} md:flex md:w-auto`}
+				>
+					<div className="flex items-center justify-between p-4 md:hidden">
+						<Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
+							<img src={logo} className="h-12" alt="logo" />
+						</Link>
+						<button
+							onClick={() => setIsMobileMenuOpen(false)}
+							className="bg-transparent text-white focus:outline-none"
+						>
+							<RxCross1 size={24} />
+						</button>
+					</div>
+					<nav className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0">
+						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-8 md:space-y-0">
+							{pages.map((page) => (
+								<Link
+									key={page.id}
+									to={page.href}
+									className={`text-base hover:text-white ${
+										activePage === page.id
+											? 'border-b border-white font-bold text-white'
+											: 'text-white'
+									}`}
+									onClick={() => {
+										setActivePage(page.id);
+										setIsMobileMenuOpen(false);
+									}}
+								>
+									{page.label}
+								</Link>
+							))}
+						</ul>
+						<WeatherSign isMobileMenuOpen={isMobileMenuOpen} />
+					</nav>
+				</div>
 			</div>
 		</nav>
 	);

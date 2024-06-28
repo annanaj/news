@@ -1,6 +1,10 @@
 import useFetchWeatherData from '../../hooks/useFetchWeatherData';
 
-export default function WeatherSign() {
+interface WeatherSignProps {
+	isMobileMenuOpen: boolean;
+}
+
+export default function WeatherSign({ isMobileMenuOpen }: WeatherSignProps) {
 	const { data, loading, error } = useFetchWeatherData();
 
 	if (loading) {
@@ -21,7 +25,9 @@ export default function WeatherSign() {
 	}
 
 	return (
-		<div className="flex items-center gap-2">
+		<div
+			className={`items-center gap-2 ${isMobileMenuOpen ? 'mr-4 block md:flex' : 'flex'}`}
+		>
 			<div className="text-xs">
 				<h2>{data.location.name}</h2>
 				<p>

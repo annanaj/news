@@ -4,7 +4,7 @@ interface TickerProps {
 
 export default function Ticker({ ticker }: TickerProps) {
 	return (
-		<div className="space-x-2">
+		<div className="flex flex-wrap gap-2">
 			{ticker.map((item) => (
 				<span
 					className="rounded-full bg-indigo-500 px-4 py-2 text-xs text-white"
