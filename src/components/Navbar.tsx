@@ -59,6 +59,7 @@ export default function Navbar() {
 				</div>
 				<div className="block md:hidden">
 					<button
+						type="button"
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						className="bg-transparent text-white focus:outline-none"
 					>
@@ -75,10 +76,17 @@ export default function Navbar() {
 							? 'fixed inset-0 z-20 flex flex-col bg-gray-900'
 							: 'hidden'
 					} md:flex md:w-auto`}
+					role="menu"
+					aria-hidden={!isMobileMenuOpen}
+					aria-expanded={isMobileMenuOpen}
 				>
 					<div className="flex items-center justify-between p-4 md:hidden">
 						<Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
-							<img src={logo} className="h-12" alt="logo" />
+							<img
+								src={logo}
+								className="h-12"
+								alt="Financial updates logo"
+							/>
 						</Link>
 						<button
 							onClick={() => setIsMobileMenuOpen(false)}
