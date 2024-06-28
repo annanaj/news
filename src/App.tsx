@@ -11,6 +11,8 @@ import {
 import routes from './routes';
 import Navbar from './components/Navbar';
 import Homepage from './pages/Homepage/Homepage';
+import CompanyList from './pages/CompanyList/CompanyList';
+import CompanyDetail from './pages/CompanyDetail/CompanyDetail';
 import NewsList from './pages/NewsList/NewsList';
 import NewsDetail from './pages/NewsDetail/NewsDetail';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
@@ -50,8 +52,13 @@ function AppContent() {
 			<Navbar />
 			<Routes location={location}>
 				<Route path="/" element={<Homepage />} />
+				<Route path={routes.companyList} element={<CompanyList />} />
+				<Route
+					path={routes.companyDetail}
+					element={<CompanyDetail />}
+				/>
 				<Route path={routes.newsList} element={<NewsList />} />
-				<Route path={routes.newsItem} element={<NewsDetail />} />
+				<Route path={routes.newsDetail} element={<NewsDetail />} />
 				<Route path={routes.themesList} element={<ThemesList />} />
 				<Route path="*" element={<PageNotFound />} />
 			</Routes>
