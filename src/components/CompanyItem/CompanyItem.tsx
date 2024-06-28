@@ -1,3 +1,4 @@
+import { MouseEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ export default function CompanyItem({
 }: CompanyItemProps) {
 	const navigate = useNavigate();
 
-	const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+	const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
 		event.preventDefault();
 		document.startViewTransition(() => {
 			flushSync(() => {
