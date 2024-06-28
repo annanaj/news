@@ -1,6 +1,6 @@
-import { TopicColors } from '../types/topicColors';
+import { TopicData } from '../types/topicData';
 
-const topicColors: TopicColors = {
+const topicColors: TopicData = {
 	Earnings: 'bg-indigo-500',
 	Technology: 'bg-teal-500',
 	Manufacturing: 'bg-emerald-500',

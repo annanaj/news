@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import placeholder from '../../assets/placeholder.svg';
 import { NewsData } from '../../types/newsData';
-import { TopicColors } from '../../types/topicColors';
+import { TopicData } from '../../types/topicData';
 import formatPublishedDate from '../../utils/dateFormatter';
 
 type NewsItemProps = {
 	newsItem: NewsData;
-	topicColors: TopicColors;
+	topicColors: TopicData;
 	showTopics: boolean;
 	navigateTo: string;
 	grayscale?: boolean;
@@ -50,11 +50,11 @@ export default function NewsItem({
 			</a>
 			{showTopics && (
 				<ul className="absolute right-0 top-6">
-					{newsItem.topics.slice(0, 3).map((topicData) => {
+					{newsItem.topics.map((topicData) => {
 						const baseClassName =
 							'py-1 px-3 mb-1 rounded-l-full shadow-lg text-sm text-white';
 						const topicColor =
-							topicColors[topicData.topic as keyof TopicColors] ||
+							topicColors[topicData.topic as keyof TopicData] ||
 							'bg-gray-500';
 						const className = `${baseClassName} ${topicColor}`;
 						return (

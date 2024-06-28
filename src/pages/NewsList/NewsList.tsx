@@ -91,9 +91,9 @@ export default function NewsList() {
 
 					{filteredData && filteredData.length > 0 ? (
 						<div className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3 lg:grid-cols-4">
-							{filteredData.map((newsItem: NewsData) => (
+							{filteredData.map((newsItem: NewsData, index) => (
 								<NewsItem
-									key={`${newsItem.url}-${newsItem.time_published}`}
+									key={`${newsItem.url}-${newsItem.time_published}-${index}`}
 									newsItem={newsItem}
 									showTopics
 									topicColors={topicColors}
