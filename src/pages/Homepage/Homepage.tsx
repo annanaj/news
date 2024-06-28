@@ -59,7 +59,7 @@ export default function NewsList() {
 						<CompanyItem
 							key={companyItem.cik}
 							companyItem={companyItem}
-							navigateTo={routes.newsList}
+							navigateTo={routes.companyList}
 							grayscale
 						/>
 					))}

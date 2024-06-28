@@ -1,6 +1,8 @@
 export default {
 	homepage: '/',
+	companyList: '/company-list',
+	companyDetail: '/company-detail',
 	newsList: '/news-list',
-	newsItem: '/news-item',
+	newsDetail: '/news-detail',
 	themesList: '/themes',
 };

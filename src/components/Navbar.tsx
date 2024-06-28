@@ -19,13 +19,18 @@ const pages: Pages[] = [
 		href: routes.homepage,
 	},
 	{
-		label: 'News',
+		label: 'Companies',
 		id: 1,
+		href: routes.companyList,
+	},
+	{
+		label: 'News',
+		id: 2,
 		href: routes.newsList,
 	},
 	{
 		label: 'Themes',
-		id: 2,
+		id: 3,
 		href: routes.themesList,
 	},
 ];

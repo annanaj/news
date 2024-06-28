@@ -97,7 +97,7 @@ export default function NewsList() {
 									newsItem={newsItem}
 									showTopics
 									topicColors={topicColors}
-									navigateTo={`${routes.newsItem}?id=${newsItem.time_published}`}
+									navigateTo={`${routes.newsDetail}?id=${newsItem.time_published}`}
 								/>
 							))}
 						</div>
