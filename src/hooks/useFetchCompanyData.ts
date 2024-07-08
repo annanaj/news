@@ -33,7 +33,6 @@ export default function useFetchCompanyData(): UseFetchDataReturn {
 			}
 		} else {
 			console.error('No company cached data available.');
-			setLoading(false);
 		}
 	};
 
