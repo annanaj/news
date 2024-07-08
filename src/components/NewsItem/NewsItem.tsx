@@ -13,6 +13,7 @@ type NewsItemProps = {
 	showTopics: boolean;
 	navigateTo: string;
 	grayscale?: boolean;
+	truncateLength: number;
 };
 
 export default function NewsItem({
@@ -21,6 +22,7 @@ export default function NewsItem({
 	topicColors,
 	showTopics,
 	grayscale = false,
+	truncateLength,
 }: NewsItemProps) {
 	const navigate = useNavigate();
 
@@ -53,7 +55,7 @@ export default function NewsItem({
 				<ul className="absolute right-0 top-6">
 					{newsItem.topics.map((topicData) => {
 						const baseClassName =
-							'py-1 px-3 mb-1 rounded-l-full shadow-lg text-sm text-white';
+							'py-1 px-3 mb-1 rounded-l-full shadow-lg text-xs text-white';
 						const topicColor =
 							topicColors[topicData.topic as keyof TopicData] ||
 							'bg-gray-500';
@@ -77,16 +79,16 @@ export default function NewsItem({
 					className="hover:underline hover:decoration-gray-500"
 				>
 					<h2 className="relative z-10 mb-4 text-xl font-bold text-gray-900">
-						{newsItem.title.length > 40
-							? `${newsItem.title.slice(0, 40)}…`
+						{newsItem.title.length > truncateLength
+							? `${newsItem.title.slice(0, truncateLength)}…`
 							: newsItem.title}
 					</h2>
 				</a>
-				<div className="mt-auto flex justify-between gap-4 text-sm text-gray-500">
+				<div className="mt-auto flex justify-between gap-4 text-xs text-gray-500">
 					<p className="self-end whitespace-nowrap">
 						{formatPublishedDate(newsItem.time_published)}
 					</p>
-					<p>{newsItem.authors}</p>
+					<p className="text-right">{newsItem.authors}</p>
 				</div>
 			</div>
 		</article>

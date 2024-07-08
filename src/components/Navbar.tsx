@@ -29,7 +29,7 @@ const pages: Pages[] = [
 		href: routes.newsList,
 	},
 	{
-		label: 'Themes',
+		label: 'How to',
 		id: 3,
 		href: routes.themesList,
 	},
@@ -51,7 +51,7 @@ export default function Navbar() {
 
 	return (
 		<nav className="fixed start-0 top-0 z-10 w-full bg-gray-900 text-white">
-			<div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between px-4 py-2">
+			<div className="mx-auto flex flex-wrap items-center justify-between px-4 py-2">
 				<div className="mr-auto flex items-center space-x-3">
 					<Link to="/">
 						<img src={logo} className="h-12" alt="logo" />

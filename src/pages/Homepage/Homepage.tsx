@@ -13,7 +13,7 @@ export default function NewsList() {
 
 	return (
 		<div className="container mx-auto mb-20 mt-24 max-w-screen-lg px-10">
-			<div className="mx-auto max-w-screen-md">
+			<div className="mx-auto">
 				<h1 className="mb-10 text-balance text-center font-semibold leading-tight">
 					Financial updates for market trending
 				</h1>
@@ -32,10 +32,10 @@ export default function NewsList() {
 					market and the broader economy.
 				</p>
 			</div>
-			<h2 className="mb-4 text-2xl font-medium">Latest updates</h2>
+			<h2 className="text-2xl font-medium">Latest updates</h2>
 			{newsData && newsData.length > 0 ? (
-				<div className="mb-10 grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-					{newsData.slice(0, 3).map((newsItem: NewsData) => (
+				<div className="mb-10 grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
+					{newsData.slice(0, 4).map((newsItem: NewsData) => (
 						<NewsItem
 							key={`${newsItem.url}-${newsItem.time_published}`}
 							newsItem={newsItem}
@@ -43,6 +43,7 @@ export default function NewsList() {
 							topicColors={topicColors}
 							navigateTo={routes.newsList}
 							grayscale
+							truncateLength={40}
 						/>
 					))}
 				</div>
