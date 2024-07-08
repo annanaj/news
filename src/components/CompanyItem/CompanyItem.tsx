@@ -43,7 +43,7 @@ export default function CompanyItem({
 				<img
 					src={companyItem.image || placeholder}
 					alt={companyItem.companyName}
-					className={`mb-4 ${grayscale ? 'grayscale filter' : ''} h-[180px] w-full rounded-xl bg-gray-200 object-cover shadow-lg`}
+					className={`mb-4 ${grayscale ? 'grayscale filter' : ''} h-[180px] w-full rounded-xl bg-gray-200 object-contain shadow-lg`}
 				/>
 			</a>
 			<div className="flex h-full flex-col justify-between">

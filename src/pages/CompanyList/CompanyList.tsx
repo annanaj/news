@@ -51,7 +51,7 @@ export default function CompanyList() {
 					</div>
 
 					{filteredData && filteredData.length > 0 ? (
-						<div className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3 lg:grid-cols-4">
+						<div className="mb-16 grid min-w-60 grid-cols-2 gap-5 md:min-w-96 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
 							{filteredData.map((companyItem: CompanyData) => (
 								<CompanyItem
 									key={`${companyItem.cik}`}

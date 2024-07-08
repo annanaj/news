@@ -98,6 +98,7 @@ export default function NewsList() {
 									showTopics
 									topicColors={topicColors}
 									navigateTo={`${routes.newsDetail}?id=${newsItem.time_published}`}
+									truncateLength={100}
 								/>
 							))}
 						</div>
