@@ -79,8 +79,8 @@ export default function NewsList() {
 									onClick={() => handleTopicClick(topic)}
 									className={`flex cursor-pointer items-center rounded-lg px-2 py-1 text-xs transition-colors ${
 										selectedTopics.includes(topic)
-											? 'border border-gray-600 bg-gray-600 dark:text-white'
-											: 'border border-gray-500 bg-white text-black dark:bg-transparent dark:text-white'
+											? 'border border-gray-600 bg-gray-600'
+											: 'border border-gray-600 bg-black'
 									}`}
 								>
 									{topic.split(' ')[0]}

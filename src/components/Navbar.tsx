@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
+import { RxCross1, RxHalf2, RxHamburgerMenu, RxMoon, RxSun  } from 'react-icons/rx';
 
 import routes from '../routes';
 import logo from '../assets/logo.webp';
@@ -50,11 +50,11 @@ export default function Navbar() {
 	}, [location.pathname]);
 
 	return (
-		<nav className="fixed start-0 top-0 z-10 w-full bg-gray-900 text-white">
+		<nav className="fixed start-0 top-0 z-20 w-full bg-gray-900 text-white">
 			<div className="mx-auto flex flex-wrap items-center justify-between px-4 py-2">
 				<div className="mr-auto flex items-center space-x-3">
 					<Link to="/">
-						<img src={logo} className="h-12" alt="logo" />
+						<img src={logo} className="h-12" alt="logo"/>
 					</Link>
 					<Link className="text-white" to="/">
 						<span className="self-center whitespace-nowrap text-base">
@@ -67,11 +67,12 @@ export default function Navbar() {
 						type="button"
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						className="bg-transparent text-white focus:outline-none"
+						aria-label="Open menu"
 					>
 						{isMobileMenuOpen ? (
-							<RxCross1 size={24} />
+							<RxCross1 size={24}/>
 						) : (
-							<RxHamburgerMenu size={24} />
+							<RxHamburgerMenu size={24}/>
 						)}
 					</button>
 				</div>
@@ -81,7 +82,6 @@ export default function Navbar() {
 							? 'fixed inset-0 z-20 flex flex-col bg-gray-900'
 							: 'hidden'
 					} md:flex md:w-auto`}
-					role="menu"
 					aria-hidden={!isMobileMenuOpen}
 					aria-expanded={isMobileMenuOpen}
 				>
@@ -94,13 +94,47 @@ export default function Navbar() {
 							/>
 						</Link>
 						<button
+							type="button"
 							onClick={() => setIsMobileMenuOpen(false)}
 							className="bg-transparent text-white focus:outline-none"
+							aria-label="Close menu"
 						>
-							<RxCross1 size={24} />
+							<RxCross1 size={24}/>
 						</button>
 					</div>
-					<nav className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0">
+					<nav
+						className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0"
+					>
+						<div className="flex gap-3 px-10">
+							<label>
+								<input
+									name="color-scheme"
+									type="radio"
+									value="light dark"
+									defaultChecked
+									hidden
+								/>
+								<RxHalf2 size={18}/>
+							</label>
+							<label>
+								<input
+									name="color-scheme"
+									type="radio"
+									value="light"
+									hidden
+								/>
+								<RxSun size={18}/>
+							</label>
+							<label>
+								<input
+									name="color-scheme"
+									type="radio"
+									value="dark"
+									hidden
+								/>
+								<RxMoon size={18}/>
+							</label>
+						</div>
 						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-8 md:space-y-0">
 							{pages.map((page) => (
 								<Link
@@ -120,7 +154,7 @@ export default function Navbar() {
 								</Link>
 							))}
 						</ul>
-						<WeatherSign isMobileMenuOpen={isMobileMenuOpen} />
+						<WeatherSign isMobileMenuOpen={isMobileMenuOpen}/>
 					</nav>
 				</div>
 			</div>
