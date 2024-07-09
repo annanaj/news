@@ -26,19 +26,38 @@ export default function CompanyDetail() {
 						<p className="mt-2">Loading article data…</p>
 					</div>
 				) : (
-					<div className="mb-4 flex flex-col p-6">
-						<h1 className="mb-6 text-3xl font-semibold leading-normal">
-							{companyItem.companyName}
-						</h1>
-						<img
-							src={companyItem.image || placeholder}
-							alt={companyItem.companyName}
-							className="mb-6 rounded-xl shadow-lg"
-						/>
-						<p className="text-sm text-gray-500">
-							{companyItem.ceo}
+					<article className="mb-4 flex flex-col p-6">
+						<div className="mb-4 flex justify-between">
+							<div className="text-gray-200">
+								<h1 className="mb-6 text-3xl font-semibold leading-normal">
+									{companyItem.companyName}
+								</h1>
+								<p>
+									<b>{companyItem.symbol}</b>
+								</p>
+								<p>
+									Exchange: <b>{companyItem.exchangeShortName}</b>
+								</p>
+								<p>
+									Last change on market: <b>{companyItem.changes}</b>
+								</p>
+								<p>
+									Employees on fulltime: <b>{companyItem.fullTimeEmployees}</b>
+								</p>
+								<p>
+									Ceo: <b>{companyItem.ceo}</b>
+								</p>
+							</div>
+							<img
+								src={companyItem.image || placeholder}
+								alt={companyItem.companyName}
+								className="mb-6 rounded-xl shadow-lg max-w-[200px]"
+							/>
+						</div>
+						<p>
+							{companyItem.description}
 						</p>
-					</div>
+					</article>
 				)}
 			</div>
 		</div>
