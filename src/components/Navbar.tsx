@@ -19,14 +19,14 @@ const pages: Pages[] = [
 		href: routes.homepage,
 	},
 	{
-		label: 'Companies',
+		label: 'News',
 		id: 1,
-		href: routes.companyList,
+		href: routes.newsList,
 	},
 	{
-		label: 'News',
+		label: 'Companies',
 		id: 2,
-		href: routes.newsList,
+		href: routes.companyList,
 	},
 	{
 		label: 'How to',
