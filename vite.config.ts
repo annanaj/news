@@ -17,5 +17,6 @@ export default defineConfig(({ mode }) => {
 			),
 		},
 		plugins: [react()],
+		base: "/news/"
 	};
 });
