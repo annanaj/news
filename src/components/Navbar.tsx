@@ -140,7 +140,7 @@ export default function Navbar() {
 								<Link
 									key={page.id}
 									to={page.href}
-									className={`text-base hover:text-white ${
+									className={`text-base hover:border-b whitespace-nowrap ${
 										activePage === page.id
 											? 'border-b border-white font-bold text-white'
 											: 'text-white'
