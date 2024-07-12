@@ -104,11 +104,7 @@ export default function NewsList() {
 							))}
 						</div>
 					) : (
-						<p>
-							{loading
-								? 'No news available, daily limit has been exceeded'
-								: 'No news available, daily limit has been exceeded'}
-						</p>
+						<p>No news available, daily limit has been exceeded</p>
 					)}
 				</>
 			)}
