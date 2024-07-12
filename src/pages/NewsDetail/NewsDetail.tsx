@@ -6,9 +6,9 @@ import useURL from '../../hooks/useSearchParams';
 import useFetchNewsData from '../../hooks/useFetchNewsData';
 
 export default function NewsDetail() {
-	const { data, loading } = useFetchNewsData();
+	const { newsData, loading } = useFetchNewsData();
 	const { id } = useURL();
-	const newsItem = data.find((item: NewsData) => item.time_published === id);
+	const newsItem = newsData.find((item: NewsData) => item.time_published === id);
 
 	if (!newsItem) {
 		return (

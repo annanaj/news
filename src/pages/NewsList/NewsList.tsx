@@ -7,7 +7,7 @@ import { NewsData } from '../../types/newsData';
 import topicColors from '../../common/topicColors';
 
 export default function NewsList() {
-	const { data, loading } = useFetchNewsData();
+	const { newsData, loading } = useFetchNewsData();
 	const [searchText, setSearchText] = useState<string>('');
 	const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
 
@@ -22,7 +22,7 @@ export default function NewsList() {
 		}
 	};
 
-	let filteredData = data;
+	let filteredData = newsData;
 	if (searchText) {
 		const searchTextLower = searchText.toLowerCase();
 		filteredData = filteredData.filter((newsItem: NewsData) => {

@@ -8,7 +8,7 @@ import { NewsData } from '../../types/newsData';
 import topicColors from '../../common/topicColors';
 
 export default function NewsList() {
-	const { data: newsData } = useFetchNewsData();
+	const { newsData } = useFetchNewsData();
 	const { data: companyData } = useFetchCompanyData();
 
 	return (
