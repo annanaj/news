@@ -106,7 +106,7 @@ export default function NewsList() {
 						<p>
 							{loading
 								? 'No news available, daily limit has been exceeded'
-								: 'No results found, reset the search'}
+								: 'No news available, daily limit has been exceeded'}
 						</p>
 					)}
 				</>
