@@ -28,7 +28,7 @@ export default function CompanyDetail() {
 				) : (
 					<article className="mb-4 flex flex-col p-6">
 						<div className="mb-4 flex justify-between">
-							<div className="text-gray-200">
+							<div>
 								<h1 className="mb-6 text-3xl font-semibold leading-normal">
 									{companyItem.companyName}
 								</h1>
