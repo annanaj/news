@@ -43,7 +43,6 @@ export default function NewsList() {
 	if (selectedTopics.length > 0) {
 		filteredData = filteredData.filter((newsItem: NewsData) =>
 			newsItem.topics
-				.slice(0, 3)
 				.some((topicData) => selectedTopics.includes(topicData.topic))
 		);
 	}
@@ -60,34 +59,36 @@ export default function NewsList() {
 				</div>
 			) : (
 				<>
-					<div className="mb-4 flex flex-wrap items-end justify-between gap-4">
-						<input
-							type="search"
-							aria-label="search"
-							id="search"
-							placeholder="Search..."
-							value={searchText}
-							onChange={(e) => setSearchText(e.target.value)}
-							className="rounded-lg border border-gray-500 px-4 py-2"
-						/>
+					{filteredData && filteredData.length > 0 && (
+						<div className="mb-4 flex flex-wrap items-end justify-between gap-4">
+							<input
+								type="search"
+								aria-label="search"
+								id="search"
+								placeholder="Search..."
+								value={searchText}
+								onChange={(e) => setSearchText(e.target.value)}
+								className="rounded-lg border border-gray-500 px-4 py-2"
+							/>
 
-						<div className="flex flex-wrap gap-2">
-							{Object.keys(topicColors).map((topic) => (
-								<button
-									type="button"
-									key={topic}
-									onClick={() => handleTopicClick(topic)}
-									className={`flex cursor-pointer items-center rounded-lg px-2 py-1 text-xs transition-colors ${
-										selectedTopics.includes(topic)
-											? 'border border-gray-600 bg-gray-600'
-											: 'border border-gray-600 bg-black'
-									}`}
-								>
-									{topic.split(' ')[0]}
-								</button>
-							))}
+							<div className="flex flex-wrap gap-2">
+								{Object.keys(topicColors).map((topic) => (
+									<button
+										type="button"
+										key={topic}
+										onClick={() => handleTopicClick(topic)}
+										className={`flex cursor-pointer items-center rounded-lg px-2 py-1 text-xs transition-colors ${
+											selectedTopics.includes(topic)
+												? 'border border-gray-600 bg-gray-600'
+												: 'border border-gray-600 bg-black'
+										}`}
+									>
+										{topic.split(' ')[0]}
+									</button>
+								))}
+							</div>
 						</div>
-					</div>
+					)}
 
 					{filteredData && filteredData.length > 0 ? (
 						<div className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3 lg:grid-cols-4">
