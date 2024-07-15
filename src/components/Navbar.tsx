@@ -8,6 +8,7 @@ import WeatherSign from './WeatherSign/WeatherSign';
 
 interface Pages {
 	label: string;
+	title: string;
 	id: number;
 	href: string;
 }
@@ -15,21 +16,25 @@ interface Pages {
 const pages: Pages[] = [
 	{
 		label: 'Home',
+		title: 'Home',
 		id: 0,
 		href: routes.homepage,
 	},
 	{
 		label: 'News',
+		title: 'News',
 		id: 1,
 		href: routes.newsList,
 	},
 	{
 		label: 'Companies',
+		title: 'Companies',
 		id: 2,
 		href: routes.companyList,
 	},
 	{
 		label: 'How to',
+		title: 'How to',
 		id: 3,
 		href: routes.themesList,
 	},
@@ -140,10 +145,11 @@ export default function Navbar() {
 								<Link
 									key={page.id}
 									to={page.href}
-									className={`text-base hover:border-b whitespace-nowrap ${
+									title={page.title}
+									className={`inline-block text-base text-white border-b hover:border-white whitespace-nowrap before:content-[attr(title)] before:block before:h-0 before:overflow-hidden before:invisible before:font-bold ${
 										activePage === page.id
-											? 'border-b border-white font-bold text-white'
-											: 'text-white'
+											? 'border-b border-white font-bold'
+											: 'border-b border-transparent'
 									}`}
 									onClick={() => {
 										setActivePage(page.id);
