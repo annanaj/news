@@ -23,13 +23,13 @@ function useFetchData<T>(apiUrl: string, localStorageKey: string): UseFetchDataR
 					if (!response.ok) {
 						throw new Error('Network response was not ok');
 					}
-					const data: T = await response.json();
-					setData(data);
-					localStorage.setItem(localStorageKey, JSON.stringify(data));
+					const fetchedData: T = await response.json();
+					setData(fetchedData);
+					localStorage.setItem(localStorageKey, JSON.stringify(fetchedData));
 					setLoading(false);
 				}
-			} catch (error) {
-				setError((error as Error).message);
+			} catch (err) {
+				setError((err as Error).message);
 				setLoading(false);
 			}
 		};
