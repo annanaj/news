@@ -1,31 +1,24 @@
-# React + TypeScript + Vite
+# MARKET NEWS and SENTIMENTS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img loading="lazy" width="200px" src="src/assets/screen-news.jpg" alt="screenshot of the News app" />
 
-Currently, two official plugins are available:
+## Install it
+- live hosted on GitHub: https://annanaj.github.io/news/
+- run locally: clone repo and npm run dev (yarn dev, ..) is sufficient
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## About project
+This testing project aims to serve and visualize market news from AlphaVantage REST API. It shows the latest data about the most important companies on the market, Apple, Nvidia, and Microsoft. 
 
-## Expanding the ESLint configuration
+## Roadmap
+- Howto page is under construction.
+- Also at least two levels of tests are about to be added.
+- Last but not least, login and db (Supabase) connection also be added.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-
+## Technologies and features
+- React app
+- runs on Vite, created via Create Vite App
+- uses TypeScript
+- css are managed by TailwindCSS
+- routing is done via React Router
+- data are fetched via useFetch hook
+- also using the newest features as ViewTransition API (for page transition), light-dark() css function for dark mode
