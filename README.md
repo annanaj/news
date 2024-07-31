@@ -1,6 +1,6 @@
 # MARKET NEWS and SENTIMENTS
 
-<img loading="lazy" width="200px" src="src/assets/screen-news.jpg" alt="screenshot of the News app" />
+![screen_news](https://github.com/user-attachments/assets/004704dd-a2fd-4927-8189-0262a8e13f0c)
 
 ## Install it
 - live hosted on GitHub: https://annanaj.github.io/news/
