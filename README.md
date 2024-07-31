@@ -10,7 +10,7 @@
 This testing project aims to serve and visualize market news from AlphaVantage REST API. It shows the latest data about the most important companies on the market, Apple, Nvidia, and Microsoft. 
 
 ## Roadmap
-- Howto page is under construction.
+- Howto page is under construction, now have just a Framer motion animation.
 - Also at least two levels of tests are about to be added.
 - Last but not least, login and db (Supabase) connection also be added.
 
