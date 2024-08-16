@@ -30,11 +30,13 @@ function useFetchData<T>(apiUrl: string, localStorageKey: string): UseFetchDataR
 				}
 			} catch (err) {
 				setError((err as Error).message);
+			}
+			finally {
 				setLoading(false);
 			}
 		};
 
-		fetchData();
+		fetchData().then();
 	}, [apiUrl, localStorageKey]);
 
 	return { data, loading, error };
