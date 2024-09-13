@@ -59,7 +59,7 @@ export default function Navbar() {
 			<div className="mx-auto flex items-center justify-between px-4 py-2">
 				<div className="mr-auto flex items-center space-x-3">
 					<Link to="/">
-						<img src={logo} className="h-12" alt="logo"/>
+						<img src={logo} className="h-12 w-16 min-h-12 min-w-16" alt="logo"/>
 					</Link>
 					<Link className="text-white" to="/">
 						<span className="self-center whitespace-nowrap text-base">
@@ -110,7 +110,7 @@ export default function Navbar() {
 					<nav
 						className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0"
 					>
-						<div className="flex gap-3 px-10">
+						<div className="flex gap-3 px-4 lg:px-10">
 							<label>
 								<input
 									name="color-scheme"
@@ -140,7 +140,7 @@ export default function Navbar() {
 								<RxMoon size={18}/>
 							</label>
 						</div>
-						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-8 md:space-y-0">
+						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0">
 							{pages.map((page) => (
 								<Link
 									key={page.id}
