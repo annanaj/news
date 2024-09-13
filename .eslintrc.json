@@ -7,5 +7,9 @@
     ],
     "plugins": [
         "prettier"
-    ]
+    ],
+	"ignorePatterns": [
+	  	".eslintrc.cjs",
+	  	"vite.config.ts"
+	]
 }
