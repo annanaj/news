@@ -7,7 +7,7 @@ import { CompanyData } from '../../types/companyData';
 import { NewsData } from '../../types/newsData';
 import topicColors from '../../common/topicColors';
 
-export default function NewsList() {
+export default function Homepage() {
 	const { newsData } = useFetchNewsData();
 	const { data: companyData } = useFetchCompanyData();
 
@@ -32,7 +32,7 @@ export default function NewsList() {
 					market and the broader economy.
 				</p>
 			</div>
-			<h2 className="text-2xl font-medium mb-4">Latest updates</h2>
+			<h2 className="mb-4 text-2xl font-medium">Latest updates</h2>
 			{newsData && newsData.length > 0 ? (
 				<div className="mb-10 grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-4">
 					{newsData.slice(0, 4).map((newsItem: NewsData) => (
