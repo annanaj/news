@@ -4,14 +4,17 @@ export default defineConfig({
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
-		'prettier'
+		'prettier',
 	],
-	plugins: ['@typescript-eslint'],
+	plugins: ['@typescript-eslint', 'tailwindcss'],
 	parser: '@typescript-eslint/parser',
 	parserOptions: {
 		ecmaVersion: 'latest',
 		sourceType: 'module',
-		project: './tsconfig.json'
+		project: './tsconfig.json',
 	},
-	rules: {}
+	rules: {
+		'tailwindcss/classnames-order': 'warn',
+		'tailwindcss/no-custom-classname': 'warn',
+	},
 });

@@ -5,4 +5,7 @@ module.exports = {
 		'@ntvr/stylelint-config/scss',
 		'@ntvr/stylelint-config/kebab-classes',
 	],
+	rules: {
+		'prettier/prettier': true,
+	},
 };

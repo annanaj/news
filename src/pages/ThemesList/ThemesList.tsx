@@ -14,6 +14,7 @@ interface User {
 interface FormValues {
 	name: string;
 }
+
 export default function ThemesList() {
 	const [count, setCount] = useState(0);
 	const [selectedTheme, setSelectedTheme] = useState<string | null>(null);
@@ -32,19 +33,24 @@ export default function ThemesList() {
 	};
 
 	const [userData, setUserData] = useState<User[] | null>(null);
-	const { register, handleSubmit, reset, formState: { errors } } = useForm<FormValues>({ mode: "onChange" });
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm<FormValues>({ mode: 'onChange' });
 
 	useEffect(() => {
 		fetch('http://localhost:3001/users')
-			.then(response => {
+			.then((response) => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
 				return response.json();
 			})
-			.then(data => {
+			.then((data) => {
 				setUserData(data);
-			})
+			});
 	}, []);
 
 	const handleAddUser = (formData: FormValues) => {
@@ -55,17 +61,19 @@ export default function ThemesList() {
 			},
 			body: JSON.stringify({ name: formData.name }),
 		})
-			.then(response => {
+			.then((response) => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
 				return response.json();
 			})
-			.then(newUser => {
-				setUserData(prevUsers => prevUsers ? [...prevUsers, newUser] : [newUser]);
+			.then((newUser) => {
+				setUserData((prevUsers) =>
+					prevUsers ? [...prevUsers, newUser] : [newUser]
+				);
 				reset();
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error('Error adding user:', error);
 			});
 	};
@@ -74,13 +82,17 @@ export default function ThemesList() {
 		fetch(`http://localhost:3001/users/${userId}`, {
 			method: 'DELETE',
 		})
-			.then(response => {
+			.then((response) => {
 				if (!response.ok) {
 					throw new Error('Network response was not ok');
 				}
-				setUserData(prevUsers => prevUsers ? prevUsers.filter(user => user.id !== userId) : null);
+				setUserData((prevUsers) =>
+					prevUsers
+						? prevUsers.filter((user) => user.id !== userId)
+						: null
+				);
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error('Error deleting user:', error);
 			});
 	};
@@ -92,20 +104,27 @@ export default function ThemesList() {
 			</div>
 
 			{userData && (
-				<div className="container mx-auto max-w-[400px] flex flex-col gap-8">
-					<h2 className="text-xl font-bold mx-auto">Users List</h2>
-					<div className="flex flex-1 flex-col gap-3">
+				<div className="container mx-auto mb-24 flex max-w-[400px] flex-col gap-8">
+					<motion.h1
+						className="mx-auto p-4 text-gray-800"
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1.5 }}
+					>
+						Users List
+					</motion.h1>
+					<div className="flex flex-col">
 						{userData.map((user) => (
 							<div
 								key={`${user.id}-${user.name}`}
-								className="grid grid-cols-2 border-b-2"
+								className="grid grid-cols-2 gap-4 border-b-[1px]"
 							>
 								<div className="flex place-items-center pl-2">
 									{user.name}
 								</div>
 								<button
 									onClick={() => handleDeleteUser(user.id)}
-									className="ml-4"
+									className="m-2"
 								>
 									Delete
 								</button>
@@ -114,9 +133,9 @@ export default function ThemesList() {
 					</div>
 					<form
 						onSubmit={handleSubmit(handleAddUser)}
-						className="flex space-y-4"
+						className="flex flex-1 flex-col"
 					>
-						<div className="flex flex-1 space-x-2">
+						<div className="grid grid-cols-2 gap-4">
 							<input
 								type="text"
 								placeholder="Add new user"
@@ -132,9 +151,9 @@ export default function ThemesList() {
 							/>
 							<button
 								type="submit"
-								className="rounded-md bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								className="mx-2 rounded-md bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
 							>
-								Add User
+								Add new user
 							</button>
 						</div>
 						{errors.name && (

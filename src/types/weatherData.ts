@@ -1,13 +1,13 @@
 export interface WeatherData {
 	location: {
-		name: string,
-	},
+		name: string;
+	};
 	current: {
-		temp_c: number,
+		temp_c: number;
 		condition: {
-			text: string,
-			icon: string,
-			code: number,
-		},
-	},
+			text: string;
+			icon: string;
+			code: number;
+		};
+	};
 }

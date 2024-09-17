@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { RxCross1, RxHalf2, RxHamburgerMenu, RxMoon, RxSun  } from 'react-icons/rx';
+import {
+	RxCross1,
+	RxHalf2,
+	RxHamburgerMenu,
+	RxMoon,
+	RxSun,
+} from 'react-icons/rx';
 
 import routes from '../routes';
 import logo from '../assets/logo.webp';
@@ -59,7 +65,11 @@ export default function Navbar() {
 			<div className="mx-auto flex items-center justify-between px-4 py-2">
 				<div className="mr-auto flex items-center space-x-3">
 					<Link to="/">
-						<img src={logo} className="h-12 w-16 min-h-12 min-w-16" alt="logo"/>
+						<img
+							src={logo}
+							className="h-12 min-h-12 w-16 min-w-16"
+							alt="logo"
+						/>
 					</Link>
 					<Link className="text-white" to="/">
 						<span className="self-center whitespace-nowrap text-base">
@@ -75,9 +85,9 @@ export default function Navbar() {
 						aria-label="Open menu"
 					>
 						{isMobileMenuOpen ? (
-							<RxCross1 size={24}/>
+							<RxCross1 size={24} />
 						) : (
-							<RxHamburgerMenu size={24}/>
+							<RxHamburgerMenu size={24} />
 						)}
 					</button>
 				</div>
@@ -104,12 +114,10 @@ export default function Navbar() {
 							className="bg-transparent text-white focus:outline-none"
 							aria-label="Close menu"
 						>
-							<RxCross1 size={24}/>
+							<RxCross1 size={24} />
 						</button>
 					</div>
-					<nav
-						className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0"
-					>
+					<nav className="flex flex-grow flex-col items-center justify-between p-5 md:flex md:flex-row md:items-center md:space-x-8 md:p-0">
 						<div className="flex gap-3 px-4 lg:px-10">
 							<label>
 								<input
@@ -119,7 +127,7 @@ export default function Navbar() {
 									defaultChecked
 									hidden
 								/>
-								<RxHalf2 size={18}/>
+								<RxHalf2 size={18} />
 							</label>
 							<label>
 								<input
@@ -128,7 +136,7 @@ export default function Navbar() {
 									value="light"
 									hidden
 								/>
-								<RxSun size={18}/>
+								<RxSun size={18} />
 							</label>
 							<label>
 								<input
@@ -137,16 +145,16 @@ export default function Navbar() {
 									value="dark"
 									hidden
 								/>
-								<RxMoon size={18}/>
+								<RxMoon size={18} />
 							</label>
 						</div>
-						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0">
+						<ul className="flex flex-col items-center space-y-4 md:flex-row md:space-x-4 md:space-y-0 lg:space-x-8">
 							{pages.map((page) => (
 								<Link
 									key={page.id}
 									to={page.href}
 									title={page.title}
-									className={`inline-block text-base text-white border-b hover:border-white whitespace-nowrap before:content-[attr(title)] before:block before:h-0 before:overflow-hidden before:invisible before:font-bold ${
+									className={`inline-block whitespace-nowrap border-b text-base text-white before:invisible before:block before:h-0 before:overflow-hidden before:font-bold before:content-[attr(title)] hover:border-white ${
 										activePage === page.id
 											? 'border-b border-white font-bold'
 											: 'border-b border-transparent'
@@ -160,7 +168,7 @@ export default function Navbar() {
 								</Link>
 							))}
 						</ul>
-						<WeatherSign isMobileMenuOpen={isMobileMenuOpen}/>
+						<WeatherSign isMobileMenuOpen={isMobileMenuOpen} />
 					</nav>
 				</div>
 			</div>
