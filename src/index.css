@@ -16,13 +16,13 @@
 }
 
 :root {
-	&:has(input[name="color-scheme"][value="light dark"]:checked) {
+	&:has(input[name='color-scheme'][value='light dark']:checked) {
 		color-scheme: light dark;
 	}
-	&:has(input[name="color-scheme"][value="light"]:checked) {
+	&:has(input[name='color-scheme'][value='light']:checked) {
 		color-scheme: light;
 	}
-	&:has(input[name="color-scheme"][value="dark"]:checked) {
+	&:has(input[name='color-scheme'][value='dark']:checked) {
 		color-scheme: dark;
 	}
 }
@@ -32,11 +32,16 @@ html {
 }
 
 body {
-	transition: color 0.4s, background-color 0.4s;
+	transition:
+		color 0.4s,
+		background-color 0.4s;
 }
 
 a {
-	color: light-dark(#4f46e5, #6366f1); /* tw indigo 600 royal blue and tw indigo 500 blueberry */
+	color: light-dark(
+		#4f46e5,
+		#6366f1
+	); /* tw indigo 600 royal blue and tw indigo 500 blueberry */
 }
 
 label {

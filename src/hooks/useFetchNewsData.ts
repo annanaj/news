@@ -7,7 +7,10 @@ import { NewsData } from '../types/newsData';
 const apiUrl = `https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo`;
 
 export default function useFetchNewsData() {
-	const { data, loading, error } = useFetchData<any>(apiUrl, 'cachedNewsData');
+	const { data, loading, error } = useFetchData<any>(
+		apiUrl,
+		'cachedNewsData'
+	);
 	const newsData: NewsData[] = data?.feed ?? [];
 	return { newsData, loading, error };
 }

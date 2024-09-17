@@ -36,13 +36,16 @@ export default function CompanyDetail() {
 									<b>{companyItem.symbol}</b>
 								</p>
 								<p>
-									Exchange: <b>{companyItem.exchangeShortName}</b>
+									Exchange:{' '}
+									<b>{companyItem.exchangeShortName}</b>
 								</p>
 								<p>
-									Last change on market: <b>{companyItem.changes}</b>
+									Last change on market:{' '}
+									<b>{companyItem.changes}</b>
 								</p>
 								<p>
-									Employees on fulltime: <b>{companyItem.fullTimeEmployees}</b>
+									Employees on fulltime:{' '}
+									<b>{companyItem.fullTimeEmployees}</b>
 								</p>
 								<p>
 									Ceo: <b>{companyItem.ceo}</b>
@@ -51,12 +54,10 @@ export default function CompanyDetail() {
 							<img
 								src={companyItem.image || placeholder}
 								alt={companyItem.companyName}
-								className="mb-6 rounded-xl shadow-lg max-w-[200px]"
+								className="mb-6 max-w-[200px] rounded-xl shadow-lg"
 							/>
 						</div>
-						<p>
-							{companyItem.description}
-						</p>
+						<p>{companyItem.description}</p>
 					</article>
 				)}
 			</div>

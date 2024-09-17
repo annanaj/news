@@ -42,8 +42,9 @@ export default function NewsList() {
 	}
 	if (selectedTopics.length > 0) {
 		filteredData = filteredData.filter((newsItem: NewsData) =>
-			newsItem.topics
-				.some((topicData) => selectedTopics.includes(topicData.topic))
+			newsItem.topics.some((topicData) =>
+				selectedTopics.includes(topicData.topic)
+			)
 		);
 	}
 
@@ -89,8 +90,7 @@ export default function NewsList() {
 					</div>
 
 					{filteredData && filteredData.length > 0 ? (
-						<div
-							className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3 lg:grid-cols-4">
+						<div className="grid min-w-60 grid-cols-1 gap-5 sm:grid-cols-2 md:min-w-96 md:grid-cols-3 lg:grid-cols-4">
 							{filteredData.map((newsItem: NewsData, index) => (
 								<NewsItem
 									key={`${newsItem.url}-${newsItem.time_published}-${index}`}
@@ -103,10 +103,14 @@ export default function NewsList() {
 							))}
 						</div>
 					) : (
-						<p>{searchText && !loading ? 'No matching news found' : 'No news available, daily limit has been exceeded'}</p>
+						<p>
+							{searchText && !loading
+								? 'No matching news found'
+								: 'No news available, daily limit has been exceeded'}
+						</p>
 					)}
 				</>
 			)}
 		</div>
-	)
+	);
 }

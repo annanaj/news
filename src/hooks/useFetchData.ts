@@ -6,7 +6,10 @@ interface UseFetchDataReturn<T> {
 	error: string | null;
 }
 
-function useFetchData<T>(apiUrl: string, localStorageKey: string): UseFetchDataReturn<T> {
+function useFetchData<T>(
+	apiUrl: string,
+	localStorageKey: string
+): UseFetchDataReturn<T> {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [error, setError] = useState<string | null>(null);
@@ -25,13 +28,15 @@ function useFetchData<T>(apiUrl: string, localStorageKey: string): UseFetchDataR
 					}
 					const fetchedData: T = await response.json();
 					setData(fetchedData);
-					localStorage.setItem(localStorageKey, JSON.stringify(fetchedData));
+					localStorage.setItem(
+						localStorageKey,
+						JSON.stringify(fetchedData)
+					);
 					setLoading(false);
 				}
 			} catch (err) {
 				setError((err as Error).message);
-			}
-			finally {
+			} finally {
 				setLoading(false);
 			}
 		};
