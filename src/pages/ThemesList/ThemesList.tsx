@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 
 import Alert from '../../components/Alert/Alert';
+import Button from '../../components/Button/Button';
 import Themes from '../../components/Themes/Themes';
 import logo from '../../assets/logo.webp';
+import { RxCrossCircled } from 'react-icons/rx';
 
 interface User {
 	id: number;
@@ -104,7 +106,7 @@ export default function ThemesList() {
 			</div>
 
 			{userData && (
-				<div className="container mx-auto mb-24 flex max-w-[400px] flex-col gap-8">
+				<div className="container mx-auto mb-24 flex max-w-[400px] flex-col gap-4">
 					<motion.h1
 						className="mx-auto p-4 text-gray-800"
 						initial={{ opacity: 0, y: -20 }}
@@ -122,12 +124,14 @@ export default function ThemesList() {
 								<div className="flex place-items-center pl-2">
 									{user.name}
 								</div>
-								<button
+								<Button
+									type="submit"
 									onClick={() => handleDeleteUser(user.id)}
-									className="m-2"
+									variant="transparent"
 								>
+									<RxCrossCircled size={24} />
 									Delete
-								</button>
+								</Button>
 							</div>
 						))}
 					</div>
@@ -138,7 +142,7 @@ export default function ThemesList() {
 						<div className="grid grid-cols-2 gap-4">
 							<input
 								type="text"
-								placeholder="Add new user"
+								placeholder="User name"
 								{...register('name', {
 									required: 'Name is required',
 									minLength: {
@@ -147,14 +151,11 @@ export default function ThemesList() {
 											'Name must be at least 3 characters long',
 									},
 								})}
-								className="rounded-md border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								className="rounded-md border border-gray-300 px-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
 							/>
-							<button
-								type="submit"
-								className="mx-2 rounded-md bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-							>
+							<Button type="submit" variant="blue">
 								Add new user
-							</button>
+							</Button>
 						</div>
 						{errors.name && (
 							<small className="text-red-500">

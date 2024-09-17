@@ -1,14 +1,39 @@
+import classNames from 'classnames';
+
 interface ButtonProps {
-	children: string;
-	onClick: () => void;
+	children: React.ReactNode;
+	onClick?: () => void;
+	loading?: boolean;
+	variant?: 'blue' | 'transparent';
+	type: 'submit' | 'button';
 }
 
-export default function Button({ children, onClick }: ButtonProps) {
+const buttonClasses = classNames(
+	'text-sm xs:text-base justify-center rounded-lg py-2 sm:py-3 inline-flex gap-x-1 sm:gap-x-2 disabled:opacity-50 border-2 border-solid transition-colors ease-in-out duration-300 font-bold items-center group disabled:cursor-not-allowed'
+);
+const colorBlueClasses = classNames(
+	'border-transparent text-white bg-blue-500 hover:border-blue-500'
+);
+const colorTransparent = classNames(
+	'border-none ml-auto mr-4 bg-transparent text-gray-500 hover:text-black hover:border-black sm:p-0'
+);
+
+const styleClassesMap = {
+	blue: colorBlueClasses,
+	transparent: colorTransparent,
+};
+
+export default function Button({
+	children,
+	onClick,
+	variant = 'blue',
+	type,
+}: ButtonProps) {
 	return (
 		<button
-			type="button"
-			className="mb-2 me-2 rounded-lg bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gradient-to-br focus:outline-none focus:ring-4 focus:ring-teal-300 dark:focus:ring-teal-800"
+			type={type}
 			onClick={onClick}
+			className={classNames(buttonClasses, styleClassesMap[variant])}
 		>
 			{children}
 		</button>
