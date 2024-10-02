@@ -1,0 +1,25 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+	"tsconfigRootDir": "./",
+	"project": "./tsconfig.json"
+  },
+  "rules": {
+	"@typescript-eslint/lines-between-class-members": "error",
+	"@typescript-eslint/no-throw-literal": "error"
+  },
+  "extends": [
+	"@ntvr/eslint-config/javascript",
+	"@ntvr/eslint-config/react",
+	"@ntvr/eslint-config/typescript",
+	"prettier"
+  ],
+  "plugins": [
+	"prettier",
+	"@typescript-eslint"
+  ],
+  "ignorePatterns": [
+	".eslintrc.cjs",
+	"vite.config.ts"
+  ]
+}

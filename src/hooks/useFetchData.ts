@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface UseFetchDataReturn<T> {
 	data: T | null;
@@ -24,7 +24,7 @@ function useFetchData<T>(
 				} else {
 					const response = await fetch(apiUrl);
 					if (!response.ok) {
-						throw new Error('Network response was not ok');
+						throw new Error("Network response was not ok");
 					}
 					const fetchedData: T = await response.json();
 					setData(fetchedData);
