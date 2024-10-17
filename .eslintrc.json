@@ -1,25 +1,37 @@
 {
+  "env": {
+	"browser": true,
+	"es2021": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
 	"tsconfigRootDir": "./",
 	"project": "./tsconfig.json"
   },
   "rules": {
-	"@typescript-eslint/lines-between-class-members": "error",
-	"@typescript-eslint/no-throw-literal": "error"
+	"prettier/prettier": "error",
+	"react/react-in-jsx-scope": "off",
+	"@typescript-eslint/explicit-module-boundary-types": "off"
   },
   "extends": [
-	"@ntvr/eslint-config/javascript",
-	"@ntvr/eslint-config/react",
-	"@ntvr/eslint-config/typescript",
-	"prettier"
+	"eslint:recommended",
+	"plugin:react/recommended",
+	"plugin:@typescript-eslint/recommended",
+	"plugin:prettier/recommended"
   ],
   "plugins": [
+	"react",
+	"@typescript-eslint",
 	"prettier",
-	"@typescript-eslint"
+	"jsx-a11y"
   ],
   "ignorePatterns": [
 	".eslintrc.cjs",
 	"vite.config.ts"
-  ]
+  ],
+  "settings": {
+	"react": {
+	  "version": "detect"
+	}
+  }
 }
