@@ -1,0 +1,18 @@
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+node_modules
+dist-ssr
+*.local
+dist/
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Sentry Config File
+.env.sentry-build-plugin
