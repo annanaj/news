@@ -1,3 +1,7 @@
+LANG=en_US.UTf-8
+LC_MESSAGES=en_US.UTF-8
+LC_ALL=en_US.UTf-8
+
 export HTTP_PROXY=http://62.192.194.114:8080
 export HTTPS_PROXY=http://62.192.194.114:8080
 export no_proxy="localhost,127.0.0.1,swe4-scm.fintechgroup.com,192.168.101.166,62.96.229.218,62.96.229.61,10.40.11.165,graylog1.uat.fintechgroup.com,ext-scm.sys.fintechgroup.com,scm.sys.flatex.com,graylog.dev.fintechgroup.com,10.40.61.27,graylog.dev.flatex.com,graylog.sys.flatex.com,ext-nexus.sys.flatex.com,192.168.101.171,etq-esx-websrv1-int.dev.xcom.de,build-bank-app.sys.flatex.com,scm-bank-app.sys.flatex.com,nexus.flatex.com,swe3-verw.sys.flatex.com,*ftg.local,*.flatex.com,*.flatexdegiro.com,10.40.106.16,62.96.229.83,ext-scm.sys.flatex.com,docs.atlas-into.com,banklb.u001.cbs-platform.com,10.40.152.70,.cloud-platform.online,10.42.54.53"
