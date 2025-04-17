@@ -1,6 +1,10 @@
+insert into ~/.xsessionrc
+
 LANG=en_US.UTf-8
 LC_MESSAGES=en_US.UTF-8
 LC_ALL=en_US.UTf-8
+
+insert into ~/.profile
 
 export HTTP_PROXY=http://62.192.194.114:8080
 export HTTPS_PROXY=http://62.192.194.114:8080
